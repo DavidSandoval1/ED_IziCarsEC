@@ -12,6 +12,7 @@ import MyTDAs.LinkedListPRS;
  */
 public class Vehiculo {
     private String imagen;
+    private String ubicacion;
     private double precio;
     private String marca;
     private String modelo;
@@ -20,7 +21,8 @@ public class Vehiculo {
     private String motor;
     private String transmision;
     private double peso;
-    private LinkedListPRS<String> historial;
+    private LinkedListPRS<String> historialA;
+    private LinkedListPRS<String> historialM;
     
     @Override
     public String toString(){
@@ -99,13 +101,31 @@ public class Vehiculo {
         this.peso = peso;
     }
 
-    public LinkedListPRS<String> getHistorial() {
-        return historial;
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    public void setHistorial(LinkedListPRS<String> historial) {
-        this.historial = historial;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
+
+    public LinkedListPRS<String> getHistorialA() {
+        return historialA;
+    }
+
+    public void setHistorialA(LinkedListPRS<String> historialA) {
+        this.historialA = historialA;
+    }
+
+    public LinkedListPRS<String> getHistorialM() {
+        return historialM;
+    }
+
+    public void setHistorialM(LinkedListPRS<String> historialM) {
+        this.historialM = historialM;
+    }
+
+    
     
     
 }

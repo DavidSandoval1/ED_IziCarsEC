@@ -1,1 +1,1 @@
-imagen;ubicacion;precio;marca;modelo;anio;kilometraje;motor;transmision;peso;historialM;historialA
+imagen;ubicacion;precio;marca;modelo;anio;kilometraje;motor;transmision;peso;historialA;historialM
