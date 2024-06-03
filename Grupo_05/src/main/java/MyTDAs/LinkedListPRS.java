@@ -109,24 +109,20 @@ public class LinkedListPRS<E> implements List<E> {
         return true;
     }
     
-    @Override
     public void addFirst(E e){
         if ( e == null ) throw new NullPointerException();
         else if ( this.isEmpty() ) this.add(e);
         this.add(0, e);
     }
     
-    @Override
     public void addLast(E e){
         this.add(e);
     }
     
-    @Override
     public E removeFirst(){
         return remove(0);
     }
     
-    @Override
     public E removeLast(){
         return remove(this.size()-1);
     }
