@@ -1,1 +1,23 @@
-imagen;ubicacion;precio;marca;modelo;anio;kilometraje;motor;transmision;peso;historialA;historialM
+imagen[0];ubicacion[1];precio[2];marca[3];modelo[4];anio[5];kilometraje[6];motor[7];transmision[8];peso[9];historialA[10];historialM[11]
+vehiculo1.png;Guayaquil;18700.50;Checrolet;Falcon;1995;123000;V8 4.6L;Automática;1500.75;1999-03-11: Reparación de chasis;2000-05-12: Cambio de aceite,2002-08-19: Sustitución de frenos,2003-12-25: Reemplazo de batería
+vehiculo2.png;Guayaquil;9800.45;Checrolet;Comet;2003;67000;V6 3.0L;Manual;1350.30;;2005-02-10: Cambio de filtros,2008-06-22: Reemplazo de batería,2012-10-05: Cambio de aceite
+vehiculo3.png;Guayaquil;12500.30;Zord;Mustang;2018;43000;V6 3.5L;Automática;1400.50;;2019-05-20: Cambio de aceite,2020-11-30: Revisión de transmisión,2022-03-14: Sustitución de frenos
+vehiculo4.png;Guayaquil;14300.60;Mia;Cielo;2012;67000;I4 1.8L;Manual;1250.75;2013-08-15: Reparación de parachoques;2013-10-20: Cambio de aceite,2016-04-27: Revisión de transmisión,2019-03-14: Cambio de correas
+vehiculo5.png;Quito;24500.75;Checrolet;Nova;2022;5000;V6 3.2L;Manual;1300.50;;2023-03-15: Revisión general
+vehiculo6.png;Quito;8700.25;Zord;Galaxy;2010;87000;V8 5.0L;Automática;1700.20;2014-07-22: Reparación de faros;2011-04-22: Cambio de filtros,2015-09-10: Revisión de transmisión,2018-07-05: Cambio de correas
+vehiculo7.png;Quito;15300.45;Mia;Nebula;1980;230000;V6 3.0L;Manual;1400.80;1987-12-02: Reparación de faros;1985-03-12: Cambio de bujías,1989-11-27: Reemplazo de frenos,1992-06-09: Cambio de aceite
+vehiculo8.png;Quito;11300.35;Checrolet;Falcon;2005;94000;I4 2.0L;Automática;1200.40;2008-11-22: Reparación de suspensión;2006-07-08: Cambio de filtros,2010-03-16: Reemplazo de batería,2012-10-02: Cambio de aceite
+vehiculo9.png;Cuenca;20400.50;Zord;Mustang;2018;45000;V6 3.3L;Automática;1600.90;;2019-05-20: Cambio de aceite,2020-12-30: Revisión de transmisión,2022-08-14: Sustitución de frenos
+vehiculo10.png;Cuenca;5200.90;Mia;Stellar;2000;180000;I4 1.6L;Manual;1100.25;2003-02-10: Reparación de luces traseras;2002-01-18: Cambio de filtros,2005-07-22: Reemplazo de batería,2008-09-05: Reparación de motor
+vehiculo11.png;Cuenca;16100.60;Checrolet;Comet;2012;67000;V6 3.2L;Automática;1450.50;;2013-10-20: Cambio de aceite,2016-04-27: Revisión de transmisión,2019-03-14: Cambio de correas
+vehiculo12.png;Cuenca;21900.15;Zord;Explorer;2020;12000;V6 2.7L;Manual;1350.60;2022-05-18: Reparación de puertas;2021-11-12: Revisión general,2023-04-18: Sustitución de frenos
+vehiculo13.png;Guayaquil;17300.25;Mia;Cielo;2010;87000;I4 1.8L;Automática;1250.30;2014-07-22: Reparación de parachoques;2011-04-22: Cambio de filtros,2015-09-10: Revisión de transmisión,2018-07-05: Cambio de correas
+vehiculo14.png;Quito;12700.45;Checrolet;Comet;1980;230000;V6 3.0L;Manual;1400.80;1987-12-02: Reparación de faros;1985-03-12: Cambio de bujías,1989-11-27: Reemplazo de frenos,1992-06-09: Cambio de aceite
+vehiculo15.png;Cuenca;10100.35;Zord;Mustang;2005;94000;I4 2.0L;Automática;1200.40;2008-11-22: Reparación de suspensión;2006-07-08: Cambio de filtros,2010-03-16: Reemplazo de batería,2012-10-02: Cambio de aceite
+vehiculo16.png;Guayaquil;19200.75;Mia;Stellar;2022;5000;I4 1.6L;Manual;1300.50;;2023-03-15: Revisión general
+vehiculo17.png;Quito;16600.60;Checrolet;Falcon;2012;67000;V8 4.6L;Automática;1500.75;2013-08-15: Reparación de parachoques;2013-10-20: Cambio de aceite,2016-04-27: Revisión de transmisión,2019-03-14: Cambio de correas
+vehiculo18.png;Cuenca;15300.30;Zord;Galaxy;2018;43000;V8 5.0L;Automática;1700.20;2014-07-22: Reparación de faros;2011-04-22: Cambio de filtros,2015-09-10: Revisión de transmisión,2018-07-05: Cambio de correas
+vehiculo19.png;Guayaquil;23700.50;Mia;Nebula;2018;45000;V6 3.3L;Automática;1600.90;;2019-05-20: Cambio de aceite,2020-12-30: Revisión de transmisión,2022-08-14: Sustitución de frenos
+vehiculo20.png;Quito;9300.90;Checrolet;Nova;2000;180000;I4 2.0L;Manual;1100.25;2003-02-10: Reparación de luces traseras;2002-01-18: Cambio de filtros,2005-07-22: Reemplazo de batería,2008-09-05: Reparación de motor
+vehiculo21.png;Cuenca;19300.60;Zord;Explorer;2012;67000;V6 3.2L;Automática;1450.50;;2013-10-20: Cambio de aceite,2016-04-27: Revisión de transmisión,2019-03-14: Cambio de correas
+vehiculo22.png;Guayaquil;16900.15;Mia;Stellar;2020;12000;V6 2.7L;Manual;1350.60;2022-05-18: Reparación de puertas;2021-11-12: Revisión general,2023-04-18: Sustitución de frenos
