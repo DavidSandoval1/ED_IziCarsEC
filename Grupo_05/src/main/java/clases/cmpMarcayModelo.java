@@ -12,6 +12,9 @@ import java.util.Comparator;
  */
 public class cmpMarcayModelo implements Comparator<Vehiculo> {
     
+    // Ordenar por Marca y Modelo (en el "main" o donde lo quiera implementar)
+    // Collections.sort(vehiculos, new ComparadorPorMarcaYModelo());
+    
     public int compare(Vehiculo v1, Vehiculo v2) {
         // Comparamos marca
         int marcaCompare = v1.getMarca().compareTo(v2.getMarca());
