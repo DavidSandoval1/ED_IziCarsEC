@@ -15,6 +15,6 @@ public class cmpAnio implements Comparator<Vehiculo>{
     @Override
     public int compare(Vehiculo v1, Vehiculo v2)
     {
-        return Integer.compare(v1.getAño(), v2.getAño());
+        return Integer.compare(v1.getAnio(), v2.getAnio());
     }
 }
