@@ -16,7 +16,7 @@ public class Vehiculo {
     private double precio;
     private String marca;
     private String modelo;
-    private int año;
+    private int anio;
     private int kilometraje;
     private String motor;
     private String transmision;
@@ -61,12 +61,12 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     public int getKilometraje() {
