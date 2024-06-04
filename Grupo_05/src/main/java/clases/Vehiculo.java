@@ -123,7 +123,7 @@ public class Vehiculo {
 
     public void setHistorialM(LinkedListPRS<String> historialM) {
         this.historialM = historialM;
-    }
+    }      
 
     
     
