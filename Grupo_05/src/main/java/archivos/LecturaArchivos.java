@@ -29,7 +29,7 @@ public class LecturaArchivos {
                 String[] dato = linea.split(";");
                 Vehiculo v = new Vehiculo();
                 
-                v.setImagen(dato[0]); v.setUbicacion(dato[1]); v.setPrecio(Double.parseDouble(dato[2]));
+                v.setImagen(pathImages+dato[0]); v.setUbicacion(dato[1]); v.setPrecio(Double.parseDouble(dato[2]));
                 v.setMarca(dato[3]); v.setModelo(dato[4]); v.setAnio(Integer.parseInt(dato[5]));
                 v.setKilometraje(Integer.parseInt(dato[6])); v.setMotor(dato[7]); v.setTransmision(dato[8]);
                 v.setPeso(Double.parseDouble(dato[9]));

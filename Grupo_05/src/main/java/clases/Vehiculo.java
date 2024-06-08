@@ -24,6 +24,30 @@ public class Vehiculo {
     private LinkedListPRS<String> historialA;
     private LinkedListPRS<String> historialM;
     
+    public Vehiculo(){
+        
+    }
+
+    public Vehiculo(String imagen, String ubicacion, double precio, 
+            String marca, String modelo, int anio, int kilometraje, 
+            String motor, String transmision, double peso, 
+            LinkedListPRS<String> historialA, LinkedListPRS<String> historialM) {
+        this.imagen = imagen;
+        this.ubicacion = ubicacion;
+        this.precio = precio;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+        this.kilometraje = kilometraje;
+        this.motor = motor;
+        this.transmision = transmision;
+        this.peso = peso;
+        this.historialA = historialA;
+        this.historialM = historialM;
+    }
+    
+    
+    
     @Override
     public String toString(){
         return marca+" "+modelo;

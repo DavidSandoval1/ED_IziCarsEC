@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clases;
+package ordenamiento;
 
+import clases.Vehiculo;
 import java.util.Comparator;
 
 /**
@@ -15,6 +16,7 @@ public class cmpMarcayModelo implements Comparator<Vehiculo> {
     // Ordenar por Marca y Modelo (en el "main" o donde lo quiera implementar)
     // Collections.sort(vehiculos, new ComparadorPorMarcaYModelo());
     
+    @Override
     public int compare(Vehiculo v1, Vehiculo v2) {
         // Comparamos marca
         int marcaCompare = v1.getMarca().compareTo(v2.getMarca());
