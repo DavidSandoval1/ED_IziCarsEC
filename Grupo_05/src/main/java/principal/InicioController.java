@@ -237,7 +237,6 @@ public class InicioController implements Initializable {
             stage.setTitle("Crea tu Vehículo");
             stage.setScene(s);
             stage.setResizable(false);
-            //stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {

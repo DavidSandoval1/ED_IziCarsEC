@@ -23,9 +23,8 @@ public class App extends Application {
         try{
             scene = new Scene(loadFXML("inicio").load(), 925, 580);
             stage.setScene(scene);
-            stage.show();
             stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
         }catch(Exception e){
             System.out.println("ERROR FATAL");
         }
