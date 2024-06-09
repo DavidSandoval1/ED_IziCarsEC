@@ -245,4 +245,25 @@ public class InicioController implements Initializable {
         }
         
     }
+    
+    @FXML
+    private void mostrarCarrusel(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = App.loadFXML("carrusel");
+            Scene s = new Scene(fxmlLoader.load(), 900, 460);
+            //juegoController jc = fxmlLoader.getController();
+            //jc.recibirValores(txt_nombre.getText(), colorFondo);
+            Stage stage = new Stage();
+            stage.setTitle("Crea tu Vehículo");
+            stage.setScene(s);
+            stage.setResizable(false);
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
 }
