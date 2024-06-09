@@ -4,12 +4,16 @@
  */
 package principal;
 
+import MyTDAs.LinkedListPRS;
 import MyTDAs.PilaPRS;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
-import filtros.filtroAnio;
 import java.net.URL;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -27,6 +31,8 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
+import ordenamiento.*;
 
 /**
  * FXML Controller class
@@ -75,6 +81,9 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        PilaPRS<Vehiculo> pila = LecturaArchivos.leerVehiculos("Vehiculos.txt");
+        cargarTodosCbx(pila);
+        
     }    
     
     public void cargarVehiculosFlowPane(PilaPRS<Vehiculo> pila){
@@ -83,6 +92,7 @@ public class InicioController implements Initializable {
             VBox cajaVehiculo = new VBox(10);
             cajaVehiculo.setPrefSize(198, 250);
             cajaVehiculo.setPadding(new Insets(5));
+            
             //Borde negro
             BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2));
             Border border = new Border(borderStroke);
@@ -101,7 +111,100 @@ public class InicioController implements Initializable {
         }
     }
     
+    public void cargarAniosCbx(PilaPRS<Vehiculo> pila){
+        List<Integer> anios = new LinkedListPRS<Integer>();
+        for(Vehiculo v: pila){
+            anios.add(v.getAnio());
+        }
+        int x = anios.get(0), y = anios.get(0);
+        for(Integer i: anios){
+            x = Math.min(i, x);
+            y = Math.max(i, y);
+        }
+        
+        for(x=x; x<=y; x++){
+            anioDesde.getItems().add(x);
+            anioHasta.getItems().add(x);
+        }
+
+    }
+    
+    public void cargarPreciosCbx(PilaPRS<Vehiculo> pila){
+        List<Double> precios = new LinkedListPRS<Double>();
+        for(Vehiculo v: pila){
+            precios.add(v.getPrecio());
+        }
+            
+        for(Double d: precios){
+            if(!precioDesde.getItems().contains(d) && !precioHasta.getItems().contains(d)){
+                precioDesde.getItems().add(d);
+                precioHasta.getItems().add(d);
+            }
+        }
+    }
+    
+    public void cargarMarcasCbx(PilaPRS<Vehiculo> pila){
+        List<String> marcas = new LinkedListPRS<String>();
+        for(Vehiculo v: pila){
+            marcas.add(v.getMarca());
+        }
+            
+        for(String s: marcas){
+            if(!cbMarca.getItems().contains(s)){
+                cbMarca.getItems().add(s);
+            }
+        }
+    }
+    
+    public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
+        List<String> modelos = new LinkedListPRS<String>();
+        for(Vehiculo v: pila){
+            modelos.add(v.getModelo());
+        }
+            
+        for(String s: modelos){
+            if(!cbModelo.getItems().contains(s)){
+                cbModelo.getItems().add(s);
+            }
+        }
+    }
+    
+    public void cargarKmCbx(PilaPRS<Vehiculo> pila){
+        List<Integer> kms = new LinkedListPRS<Integer>();
+        for(Vehiculo v: pila){
+            kms.add(v.getKilometraje());
+        }
+        
+        for(Integer i: kms){
+            if(!kmDesde.getItems().contains(i) && !kmHasta.getItems().contains(i)){
+                kmDesde.getItems().add(i);
+                kmHasta.getItems().add(i);
+            }
+        }
+    }
+    
+    public void cargarTodosCbx(PilaPRS<Vehiculo> pila){
+        cargarPreciosCbx(pila);
+        cargarAniosCbx(pila);
+        cargarKmCbx(pila);
+        cargarModelosCbx(pila);
+        cargarMarcasCbx(pila);
+
+    }
+    
     public static void cargarCarruselVehiculos(){
+        
+    }
+
+    @FXML
+    private void seleccionAnio(ActionEvent event) {
+        Integer desde = anioDesde.getValue();
+        anioHasta.getItems().clear();
+        int x = desde, y = anioDesde.getItems().get(anioDesde.getItems().size()-1);
+
+        for(x=x; x<=y; x++){
+            anioHasta.getItems().add(x);
+        }
         
     }
 }

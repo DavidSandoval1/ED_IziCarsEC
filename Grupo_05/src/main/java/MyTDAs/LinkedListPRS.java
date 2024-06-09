@@ -5,6 +5,7 @@
 package MyTDAs;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -15,6 +16,7 @@ import java.util.ListIterator;
  * @param <E>
  */
 public class LinkedListPRS<E> implements List<E> {
+
     private Node primero;
     private Node ultimo;
     
@@ -84,7 +86,11 @@ public class LinkedListPRS<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Object[] arreglo = new Object[this.size()];
+        Iterator<E> it = this.iterator();
+        int c = 0;
+        while(it.hasNext()) arreglo[c++] = it.next();
+        return arreglo;
     }
 
     @Override
@@ -274,6 +280,11 @@ public class LinkedListPRS<E> implements List<E> {
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void sort(Comparator<? super E> c) {
+        List.super.sort(c); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     
     @Override
