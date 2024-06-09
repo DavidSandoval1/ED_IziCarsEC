@@ -16,6 +16,7 @@ import java.util.Iterator;
 public class PilaPRS<E> implements Deque<E>{
     private Node primero;
     private Node ultimo;
+    private int size = 0;
     
     protected class Node{
         Node ant;
@@ -46,19 +47,12 @@ public class PilaPRS<E> implements Deque<E>{
             E element = act.contenido;
             act = act.sig;
             return element;
-        }
+        }   
     }
-
+     
     @Override
     public int size() {
-        if (this.isEmpty()) return 0;
-        
-        int count = 0;
-        Node i = this.primero;
-        do {
-            count++;
-        } while ( ( i = i.sig ) != null );
-        return count;
+        return this.size;
     }
 
     @Override
@@ -83,7 +77,11 @@ public class PilaPRS<E> implements Deque<E>{
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Object[] arreglo = new Object[this.size()];
+        Iterator<E> it = this.iterator();
+        int c = 0;
+        while(it.hasNext()) arreglo[c++] = it.next();
+        return arreglo;
     }
 
     @Override
@@ -97,6 +95,7 @@ public class PilaPRS<E> implements Deque<E>{
         else if ( this.isEmpty() ){
             this.primero = new Node(e);
             this.ultimo = this.primero;
+            this.size++;
             return true;
         }
         Node iNode = this.primero;
@@ -105,6 +104,7 @@ public class PilaPRS<E> implements Deque<E>{
         iNode.sig = jNode;
         jNode.ant = iNode;
         this.ultimo = jNode;
+        this.size++;
         return true;
     }
     
@@ -133,7 +133,12 @@ public class PilaPRS<E> implements Deque<E>{
     @Override
     public boolean remove(Object o) {
         if ( o == null ) return false;
-        for (E element: this) if (o.equals(element)) return true;
+        for ( int i = 0; i<this.size; i++){
+            if(this.get(i).equals(o)) {
+                this.remove(i);
+                return true;
+            }
+        }
         return false;
     }
     
@@ -201,12 +206,14 @@ public class PilaPRS<E> implements Deque<E>{
                     iNode.ant = newNode;
                     newNode.sig = iNode;
                     this.primero = newNode;
+                    this.size++;
                 } else {
                     Node befNode = iNode.ant;
                     newNode.ant = befNode;
                     befNode.sig = newNode;
                     newNode.sig = iNode;
                     iNode.ant = newNode;
+                    this.size++;
                 }
                 break;
             }
@@ -242,6 +249,7 @@ public class PilaPRS<E> implements Deque<E>{
                 
             }
         }
+        this.size--;
         return element;
     }
     

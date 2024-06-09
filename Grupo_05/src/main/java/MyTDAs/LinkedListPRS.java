@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -16,9 +17,9 @@ import java.util.ListIterator;
  * @param <E>
  */
 public class LinkedListPRS<E> implements List<E> {
-
     private Node primero;
     private Node ultimo;
+    private int size;
     
     protected class Node{
         Node ant;
@@ -52,16 +53,122 @@ public class LinkedListPRS<E> implements List<E> {
         }
     }
 
+    protected class ListIteratorPRS implements ListIterator<E>{
+        private Node actual = primero;
+        private Node ultimoRetornado = null;
+        private int nextIndex = 0;
+        
+        @Override
+        public boolean hasNext(){
+            return nextIndex < size; 
+        }
+        
+        @Override
+        public E next(){
+            if(!hasNext()) throw new NoSuchElementException();
+            
+            ultimoRetornado = actual;
+            actual = actual.sig;
+            nextIndex++;
+            return ultimoRetornado.contenido;
+        }
+        
+        @Override
+        public boolean hasPrevious(){
+            return nextIndex > 0;
+        }
+        
+        @Override
+        public E previous() {
+            if (!hasPrevious()) throw new NoSuchElementException();
+            
+            if (actual == null) actual = ultimo;
+            else actual = actual.ant;
+            
+            ultimoRetornado = actual;
+            nextIndex--;
+            return ultimoRetornado.contenido;
+        }
+        
+        @Override
+        public int nextIndex() {
+            return nextIndex;
+        }
+        
+        @Override
+        public int previousIndex() {
+            return nextIndex - 1;
+        }
+        
+        @Override
+        public void remove(){
+            if (ultimoRetornado == null) throw new IllegalStateException();
+            Node nextNode = ultimoRetornado.sig;
+            Node prevNode = ultimoRetornado.ant;
+            
+            if (prevNode == null) primero = nextNode;
+            else {
+                prevNode.sig = nextNode;
+                ultimoRetornado.ant = null;
+            }
+            
+            if (nextNode == null) ultimo = prevNode;
+            else {
+                nextNode.ant = prevNode;
+                ultimoRetornado.sig = null;
+            }
+            
+            if (actual == ultimoRetornado) actual = nextNode;
+            else {
+                nextIndex--;
+            }
+            
+            ultimoRetornado = null;
+            size--;
+        }
+        
+        @Override
+        public void set(E e) {
+            if (ultimoRetornado == null) {
+                throw new IllegalStateException();
+            }
+            ultimoRetornado.contenido = e;
+        }
+        
+        @Override
+        public void add(E e) {
+            Node newNode = new Node(e);
+
+            if (actual == null) {
+                newNode.ant = ultimo;
+                if (ultimo != null) {
+                    ultimo.sig = newNode;
+                }
+                ultimo = newNode;
+                if (primero == null) {
+                    primero = newNode;
+                }
+            } else {
+                newNode.sig = actual;
+                newNode.ant = actual.ant;
+                if (actual.ant != null) {
+                    actual.ant.sig = newNode;
+                }
+                actual.ant = newNode;
+                if (actual == primero) {
+                    primero = newNode;
+                }
+            }
+
+            nextIndex++;
+            size++;
+            ultimoRetornado = null;
+        }
+    }
+    
     @Override
     public int size() {
-        if (this.isEmpty()) return 0;
-        
-        int count = 0;
-        Node i = this.primero;
-        do {
-            count++;
-        } while ( ( i = i.sig ) != null );
-        return count;
+        return this.size;
     }
 
     @Override
@@ -104,6 +211,7 @@ public class LinkedListPRS<E> implements List<E> {
         else if ( this.isEmpty() ){
             this.primero = new Node(e);
             this.ultimo = this.primero;
+            this.size++;
             return true;
         }
         Node iNode = this.primero;
@@ -112,23 +220,28 @@ public class LinkedListPRS<E> implements List<E> {
         iNode.sig = jNode;
         jNode.ant = iNode;
         this.ultimo = jNode;
+        this.size++;
         return true;
     }
     
+    @Override
     public void addFirst(E e){
         if ( e == null ) throw new NullPointerException();
         else if ( this.isEmpty() ) this.add(e);
         this.add(0, e);
     }
     
+    @Override
     public void addLast(E e){
         this.add(e);
     }
     
+    @Override
     public E removeFirst(){
         return remove(0);
     }
     
+    @Override
     public E removeLast(){
         return remove(this.size()-1);
     }
@@ -136,7 +249,12 @@ public class LinkedListPRS<E> implements List<E> {
     @Override
     public boolean remove(Object o) {
         if ( o == null ) return false;
-        for (E element: this) if (o.equals(element)) return true;
+        for ( int i = 0; i<this.size; i++){
+            if(this.get(i).equals(o)) {
+                this.remove(i);
+                return true;
+            }
+        }
         return false;
     }
     
@@ -212,12 +330,14 @@ public class LinkedListPRS<E> implements List<E> {
                     iNode.ant = newNode;
                     newNode.sig = iNode;
                     this.primero = newNode;
+                    this.size++;
                 } else {
                     Node befNode = iNode.ant;
                     newNode.ant = befNode;
                     befNode.sig = newNode;
                     newNode.sig = iNode;
                     iNode.ant = newNode;
+                    this.size++;
                 }
                 break;
             }
@@ -254,6 +374,7 @@ public class LinkedListPRS<E> implements List<E> {
                 
             }
         }
+        this.size--;
         return element;
     }
     
@@ -269,7 +390,7 @@ public class LinkedListPRS<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new ListIteratorPRS();
     }
 
     @Override
