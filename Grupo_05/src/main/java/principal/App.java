@@ -19,18 +19,22 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("inicio"), 740, 580);
-        stage.setScene(scene);
-        stage.show();
+        try{
+            scene = new Scene(loadFXML("inicio").load(), 740, 580);
+            stage.setScene(scene);
+            stage.show();
+        }catch(Exception e){
+            System.out.println("ERROR FATAL");
+        }
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        scene.setRoot(loadFXML(fxml).load());
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        return fxmlLoader;
     }
 
     public static void main(String[] args) {
