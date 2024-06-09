@@ -168,6 +168,7 @@ public class PilaPRS<E> implements Deque<E>{
     public void clear() {
         this.primero = null;
         this.ultimo = null;
+        this.size = 0;
     }
     
     private E get(int index) {
