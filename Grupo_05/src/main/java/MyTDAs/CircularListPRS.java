@@ -14,9 +14,9 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author Pc
- * @param <E>
  */
-public class LinkedListPRS<E> implements List<E> {
+public class CircularListPRS<E> implements List<E> {
+    private Node actual;
     private Node primero;
     private Node ultimo;
     private int size;
@@ -33,23 +33,23 @@ public class LinkedListPRS<E> implements List<E> {
         }
     }
     
-    protected class LinkedListIteratorPRS<E> implements Iterator<E>{
-        LinkedListPRS<E>.Node act;
+    protected class CircularListIteratorPRS implements Iterator<E>{
+        private Node actual = primero;
+        private Node ultimoRetornado = null;
+        private int nextIndex = 0;
         
-        LinkedListIteratorPRS(LinkedListPRS<E> list){
-            act = list.primero;
-        }
-
         @Override
         public boolean hasNext() {
-            return act != null;
+            return nextIndex < size;
         }
 
         @Override
         public E next() {
-            E element = act.contenido;
-            act = act.sig;
-            return element;
+            if (!hasNext()) throw new NoSuchElementException();
+            ultimoRetornado = actual;
+            actual = actual.sig;
+            nextIndex++;
+            return ultimoRetornado.contenido;
         }
     }
 
@@ -166,6 +166,24 @@ public class LinkedListPRS<E> implements List<E> {
         }
     }
     
+    public E actualNode(E element){
+        actual = this.primero;
+        if (this.contains(element)){
+            while (!actual.contenido.equals(element)) actual = actual.sig;
+        }
+        return actual.contenido;
+    }
+    
+    public E nextNode(){
+        actual = actual.sig;
+        return actual.contenido;
+    }
+    
+    public E prevNode(){
+        actual = actual.ant;
+        return actual.contenido;
+    }
+    
     @Override
     public int size() {
         return this.size;
@@ -179,7 +197,8 @@ public class LinkedListPRS<E> implements List<E> {
     @Override
     public boolean contains(Object o) {        
         Node i = this.primero;
-        while ( i != null ){
+        int c = 0;
+        while ( (c++) < this.size ){
             if ( i.contenido.equals(o) ) return true;
             i = i.sig;
         }
@@ -188,7 +207,7 @@ public class LinkedListPRS<E> implements List<E> {
     
     @Override
     public Iterator<E> iterator() {
-        return new LinkedListIteratorPRS(this);
+        return new CircularListIteratorPRS();
     }
 
     @Override
@@ -209,17 +228,19 @@ public class LinkedListPRS<E> implements List<E> {
     public boolean add(E e) {
         if ( e == null ) return false;
         else if ( this.isEmpty() ){
-            this.primero = new Node(e);
-            this.ultimo = this.primero;
-            this.size++;
-            return true;
+            this.ultimo = this.primero = new Node(e);
+            this.primero.ant = this.ultimo;
+            this.primero.sig = this.ultimo;
+            this.ultimo.sig = this.primero;
+            this.ultimo.ant = this.primero;
+        }else {
+            Node newNode = new Node(e);
+            newNode.sig = this.primero;
+            newNode.ant = this.ultimo;
+            this.ultimo.sig = newNode;
+            this.primero.ant = newNode;
+            this.ultimo = newNode;
         }
-        Node iNode = this.primero;
-        while ( iNode.sig != null ) iNode = iNode.sig;
-        Node jNode = new Node(e);
-        iNode.sig = jNode;
-        jNode.ant = iNode;
-        this.ultimo = jNode;
         this.size++;
         return true;
     }
@@ -322,57 +343,72 @@ public class LinkedListPRS<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         if ( index < 0 || index > this.size() || element == null ) throw new NullPointerException();
-        Node iNode = this.primero;
+        
+        Node actual = this.primero;
+        Node ultimoRetornado;
         Node newNode = new Node(element);
-        for ( int i = 0; i <= index; i++ ){
-            if ( i == index ){
-                if ( i == this.size() ) this.addLast(element);
-                else if ( i == 0 ){
-                    iNode.ant = newNode;
-                    newNode.sig = iNode;
-                    this.primero = newNode;
+        
+        if ( index == 0 ){
+            newNode.sig = actual;
+            newNode.ant = this.ultimo;
+            this.ultimo.sig = newNode;
+            actual.ant = newNode;
+            this.primero = newNode;
+            this.size++;
+        }else if ( index == this.size() ){
+            actual = this.ultimo;
+            newNode.sig = this.primero;
+            newNode.ant = actual;
+            this.primero.ant = newNode;
+            actual.sig = newNode;
+            this.ultimo = newNode;
+            this.size++;
+        }else{
+            ultimoRetornado = actual;
+            actual = actual.sig;
+            for ( int i = 1; i <= index ; i++ ){
+                if ( i == index ){
+                    newNode.sig = actual;
+                    newNode.ant = ultimoRetornado;
+                    ultimoRetornado.sig = newNode;
+                    actual.ant = newNode;
                     this.size++;
-                } else {
-                    Node befNode = iNode.ant;
-                    newNode.ant = befNode;
-                    befNode.sig = newNode;
-                    newNode.sig = iNode;
-                    iNode.ant = newNode;
-                    this.size++;
-                }
-                break;
+                }else{
+                    ultimoRetornado = actual;
+                    actual = actual.sig;
+                }   
             }
-            iNode = iNode.sig;
         }
     }
     
     @Override
     public E remove(int index) {
         if ( index < 0 || index >= this.size() ) throw new NullPointerException();
-        Node iNode = this.primero;
+        Node actual = this.primero;
+        Node ultimoRetornado = null;
         E element = null;
         if ( index == 0 ){
-            element = iNode.contenido;
-            iNode = iNode.sig;
-            if ( this.size() > 1 ) iNode.ant = null;
-            this.primero = iNode;
-        } else if ( index == this.size() - 1 ) {
-            Node jNode = this.ultimo;
-            element = jNode.contenido;
-            jNode = jNode.ant;
-            jNode.sig = null;
-            this.ultimo = jNode;
-        } else {
-            iNode = iNode.sig;
-            for ( int i = 1; i <= index; i++ ){
+            element = actual.contenido;
+            actual.sig.ant = this.ultimo;
+            this.ultimo.sig = actual.sig;
+            this.primero = actual.sig;
+        }else if ( index == this.size - 1){
+            actual = this.ultimo;
+            element = actual.contenido;
+            actual.ant.sig = this.primero;
+            this.primero.ant = actual.ant;
+            this.ultimo = actual.ant;
+        }else{
+            ultimoRetornado = actual;
+            actual = actual.sig;
+            for ( int i = 1; i <= index ; i++ ){
                 if ( i == index ){
-                   element = iNode.contenido;
-                   Node befNode = iNode.ant;
-                   Node aftNode = iNode.sig;
-                   befNode.sig = aftNode;
-                   aftNode.ant = befNode;
+                    element = actual.contenido;
+                    actual.sig.ant = ultimoRetornado;
+                    ultimoRetornado.sig = actual.sig;
                 }
-                
+                ultimoRetornado = actual;
+                actual = actual.sig;
             }
         }
         this.size--;
@@ -416,7 +452,7 @@ public class LinkedListPRS<E> implements List<E> {
         String[] cadena = new String[this.size()];
         int c = 0;
         
-        for ( E e: this){
+        for (E e: this){
             cadena[c++] = String.valueOf(e);
         }
         

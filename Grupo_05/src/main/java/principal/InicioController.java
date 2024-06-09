@@ -90,7 +90,7 @@ public class InicioController implements Initializable {
         flwPane.getChildren().clear();
         for (Vehiculo v: pila){
             VBox cajaVehiculo = new VBox(10);
-            cajaVehiculo.setPrefSize(198, 250);
+            cajaVehiculo.setPrefSize(196, 250);
             cajaVehiculo.setPadding(new Insets(5));
             
             //Borde negro
@@ -99,8 +99,8 @@ public class InicioController implements Initializable {
             cajaVehiculo.setBorder(border);
             //Imagen del vehiculo
             ImageView imagenVehiculo = new ImageView(new Image("file:"+v.getImagen()));
-            imagenVehiculo.setFitWidth(188);
-            imagenVehiculo.setFitHeight(188);
+            imagenVehiculo.setFitWidth(186);
+            imagenVehiculo.setFitHeight(186);
             imagenVehiculo.setPreserveRatio(true);
             //Label de informacion
             Label infoVehiculo = new Label(v.getMarca()+" "+v.getModelo()+" - "+v.getAnio());
