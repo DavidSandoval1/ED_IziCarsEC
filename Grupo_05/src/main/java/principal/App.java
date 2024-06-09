@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -20,9 +21,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try{
-            scene = new Scene(loadFXML("inicio").load(), 740, 580);
+            scene = new Scene(loadFXML("inicio").load(), 925, 580);
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
         }catch(Exception e){
             System.out.println("ERROR FATAL");
         }

@@ -1,11 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CrearVehiculoController">
-    
+
+<AnchorPane id="AnchorPane" minHeight="460.0" minWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="principal.CrearVehiculoController">
+   <children>
+      <VBox prefHeight="460.0" prefWidth="900.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="96.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #D80F0F, #290505);">
+               <children>
+                  <Label prefHeight="96.0" prefWidth="173.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="EZCars®" textAlignment="CENTER">
+                     <font>
+                        <Font name="Playbill" size="50.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="89.0" prefWidth="521.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="¡CREA TU VEHICULO!">
+                     <font>
+                        <Font name="Playbill" size="80.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="btnCrear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnCrear" prefHeight="56.0" prefWidth="130.0" text="Crear" textFill="#bc1b1b">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="365.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom, #290505, #8B8B8B);">
+               <children>
+                  <VBox prefHeight="305.0" prefWidth="300.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Nombre del dueño:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFPropietario" minHeight="30.0" />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Marca:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFMarca" minHeight="30.0" promptText="Ej: Checrolet, Mia, Zord, etc." />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Modelo:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFModelo" minHeight="30.0" promptText="Ej: Cielo, Explorer, Comet, etc." />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Precio:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFPrecio" minHeight="30.0" promptText="Ej: 1500.50, 2000.40" />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Kilometraje:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFKm" minHeight="30.0" promptText="Ej: 12500, 4000, 5400" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="305.0" prefWidth="300.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Ubicacion:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFUbicacion" minHeight="30.0" prefHeight="30.0" prefWidth="280.0" promptText="Ej: Guayaquil, Quito, Cuenca, etc." />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Año:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFAnio" minHeight="30.0" promptText="Ej: 2000, 1980, 2015" />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Motor:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFMotor" minHeight="30.0" promptText="Ej: V6 3.2L, V8 5.0L, I4 1.8L" />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Transmision:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFTransmision" minHeight="30.0" promptText="Ej: Automática, Manual" />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Peso:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFPeso" minHeight="30.0" promptText="Ej: 1350.50, 1400.80, 1700.20" />
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="305.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Historial de Accidentes:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="21.0" />
+                           </font>
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFlblHistA" alignment="TOP_LEFT" minHeight="30.0" minWidth="280.0" prefHeight="30.0" prefWidth="280.0" promptText="AAAA-MM-DD: Descripcion1, AAAA-MM-DD: Descripcion2, .... " />
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Historial de Modificaciones:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFHistM" alignment="TOP_LEFT" minHeight="30.0" prefHeight="33.0" prefWidth="280.0" promptText="AAAA-MM-DD: Descripcion1, AAAA-MM-DD: Descripcion2, .... ">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Foto:" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
