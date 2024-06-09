@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" minHeight="580.0" minWidth="925.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CarruselController">
+   <children>
+      <HBox layoutX="88.0" layoutY="15.0" prefHeight="550.0" prefWidth="750.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0">
+                     <children>
+                        <ImageView fx:id="imgVehiculo" fitHeight="350.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="153.0" prefWidth="378.0">
+                     <children>
+                        <Label text="Historial de Accidentes:">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbAccidente" text="Ninguno">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="550.0" prefWidth="354.0" spacing="10.0">
+               <children>
+                  <Label fx:id="lbNombreVehiculo" text="NOMBRE VEHICULO">
+                     <font>
+                        <Font name="Arial Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="332.0">
+                     <children>
+                        <Label text="Precio: ">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbPrecio" text="PRECIO">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text=" $">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="107.0" prefWidth="332.0" spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Detalles del Vehículo">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Ubicación:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbUbicacion" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Año:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbAnio" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Kilometraje:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbKilometraje" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Motor:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbMotor" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Transmisión:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbTransmision" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="18.0" prefWidth="378.0" spacing="5.0">
+                           <children>
+                              <Label text="Peso:">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbPeso" text="Label">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="88.0" prefWidth="332.0">
+                     <children>
+                        <Label text="Historial de Mantenimiento:">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbMantenimiento" text="Ninguno">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="btPrevCar" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onAction="#prevCar" text=" ◀ ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btNextCar" layoutX="878.0" layoutY="278.0" mnemonicParsing="false" onAction="#nextCar" text=" ▶ ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

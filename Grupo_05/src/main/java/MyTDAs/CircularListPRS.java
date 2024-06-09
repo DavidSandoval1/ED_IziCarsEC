@@ -340,38 +340,38 @@ public class CircularListPRS<E> implements List<E> {
     public void add(int index, E element) {
         if ( index < 0 || index > this.size() || element == null ) throw new NullPointerException();
         
-        Node actual = this.primero;
+        Node refNode = this.primero;
         Node ultimoRetornado;
         Node newNode = new Node(element);
         
         if ( index == 0 ){
-            newNode.sig = actual;
+            newNode.sig = refNode;
             newNode.ant = this.ultimo;
             this.ultimo.sig = newNode;
-            actual.ant = newNode;
+            refNode.ant = newNode;
             this.primero = newNode;
             this.size++;
         }else if ( index == this.size() ){
-            actual = this.ultimo;
+            refNode = this.ultimo;
             newNode.sig = this.primero;
-            newNode.ant = actual;
+            newNode.ant = refNode;
             this.primero.ant = newNode;
-            actual.sig = newNode;
+            refNode.sig = newNode;
             this.ultimo = newNode;
             this.size++;
         }else{
-            ultimoRetornado = actual;
-            actual = actual.sig;
+            ultimoRetornado = refNode;
+            refNode = refNode.sig;
             for ( int i = 1; i <= index ; i++ ){
                 if ( i == index ){
-                    newNode.sig = actual;
+                    newNode.sig = refNode;
                     newNode.ant = ultimoRetornado;
                     ultimoRetornado.sig = newNode;
-                    actual.ant = newNode;
+                    refNode.ant = newNode;
                     this.size++;
                 }else{
-                    ultimoRetornado = actual;
-                    actual = actual.sig;
+                    ultimoRetornado = refNode;
+                    refNode = refNode.sig;
                 }   
             }
         }
@@ -380,31 +380,31 @@ public class CircularListPRS<E> implements List<E> {
     @Override
     public E remove(int index) {
         if ( index < 0 || index >= this.size() ) throw new NullPointerException();
-        Node actual = this.primero;
-        Node ultimoRetornado = null;
+        Node refNode = this.primero;
+        Node ultimoRetornado;
         E element = null;
         if ( index == 0 ){
-            element = actual.contenido;
-            actual.sig.ant = this.ultimo;
-            this.ultimo.sig = actual.sig;
-            this.primero = actual.sig;
+            element = refNode.contenido;
+            refNode.sig.ant = this.ultimo;
+            this.ultimo.sig = refNode.sig;
+            this.primero = refNode.sig;
         }else if ( index == this.size - 1){
-            actual = this.ultimo;
-            element = actual.contenido;
-            actual.ant.sig = this.primero;
-            this.primero.ant = actual.ant;
-            this.ultimo = actual.ant;
+            refNode = this.ultimo;
+            element = refNode.contenido;
+            refNode.ant.sig = this.primero;
+            this.primero.ant = refNode.ant;
+            this.ultimo = refNode.ant;
         }else{
-            ultimoRetornado = actual;
-            actual = actual.sig;
+            ultimoRetornado = refNode;
+            refNode = refNode.sig;
             for ( int i = 1; i <= index ; i++ ){
                 if ( i == index ){
-                    element = actual.contenido;
-                    actual.sig.ant = ultimoRetornado;
-                    ultimoRetornado.sig = actual.sig;
+                    element = refNode.contenido;
+                    refNode.sig.ant = ultimoRetornado;
+                    ultimoRetornado.sig = refNode.sig;
                 }
-                ultimoRetornado = actual;
-                actual = actual.sig;
+                ultimoRetornado = refNode;
+                refNode = refNode.sig;
             }
         }
         this.size--;

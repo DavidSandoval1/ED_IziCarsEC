@@ -244,4 +244,6 @@ public class InicioController implements Initializable {
         }
         
     }
+
+    
 }

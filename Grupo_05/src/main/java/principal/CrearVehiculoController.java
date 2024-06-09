@@ -56,6 +56,7 @@ public class CrearVehiculoController implements Initializable {
 
     @FXML
     private void btnCrear(ActionEvent event) {
+        
     }
     
 }

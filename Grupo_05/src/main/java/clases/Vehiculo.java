@@ -5,6 +5,7 @@
 package clases;
 
 import MyTDAs.LinkedListPRS;
+import java.util.Objects;
 
 /**
  *
@@ -45,8 +46,64 @@ public class Vehiculo {
         this.historialA = historialA;
         this.historialM = historialM;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.imagen);
+        hash = 47 * hash + Objects.hashCode(this.ubicacion);
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.precio) ^ (Double.doubleToLongBits(this.precio) >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.marca);
+        hash = 47 * hash + Objects.hashCode(this.modelo);
+        hash = 47 * hash + this.anio;
+        hash = 47 * hash + this.kilometraje;
+        hash = 47 * hash + Objects.hashCode(this.motor);
+        hash = 47 * hash + Objects.hashCode(this.transmision);
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.peso) ^ (Double.doubleToLongBits(this.peso) >>> 32));
+        return hash;
+    }
     
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vehiculo other = (Vehiculo) obj;
+        if (Double.doubleToLongBits(this.precio) != Double.doubleToLongBits(other.precio)) {
+            return false;
+        }
+        if (this.anio != other.anio) {
+            return false;
+        }
+        if (this.kilometraje != other.kilometraje) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.peso) != Double.doubleToLongBits(other.peso)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagen, other.imagen)) {
+            return false;
+        }
+        if (!Objects.equals(this.ubicacion, other.ubicacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo)) {
+            return false;
+        }
+        if (!Objects.equals(this.motor, other.motor)) {
+            return false;
+        }
+        return Objects.equals(this.transmision, other.transmision);
+    }
     
     @Override
     public String toString(){
