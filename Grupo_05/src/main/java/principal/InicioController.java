@@ -36,6 +36,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -88,6 +89,7 @@ public class InicioController implements Initializable {
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         PilaPRS<Vehiculo> pila = LecturaArchivos.leerVehiculos("Vehiculos.txt");
         cargarTodosCbx(pila);
+        cargarVehiculosFlowPane(pila);
         
     }    
     
@@ -228,12 +230,14 @@ public class InicioController implements Initializable {
         try {
             FXMLLoader fxmlLoader;
             fxmlLoader = App.loadFXML("crearVehiculo");
-            Scene s = new Scene(fxmlLoader.load(), 810, 440);
+            Scene s = new Scene(fxmlLoader.load(), 900, 460);
             //juegoController jc = fxmlLoader.getController();
             //jc.recibirValores(txt_nombre.getText(), colorFondo);
             Stage stage = new Stage();
             stage.setTitle("Crea tu Vehículo");
             stage.setScene(s);
+            stage.setResizable(false);
+            //stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
