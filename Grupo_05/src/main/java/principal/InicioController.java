@@ -9,8 +9,6 @@ import MyTDAs.PilaPRS;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
 import java.net.URL;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,7 +30,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-import ordenamiento.*;
+import filtros.*;
 
 /**
  * FXML Controller class
@@ -73,6 +71,8 @@ public class InicioController implements Initializable {
     private ScrollPane scrlPane;
     @FXML
     private FlowPane flwPane;
+    @FXML
+    private Button btnCrear;
 
     /**
      * Initializes the controller class.
@@ -156,7 +156,7 @@ public class InicioController implements Initializable {
         }
     }
     
-    public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
+    /*public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
         List<String> modelos = new LinkedListPRS<String>();
         for(Vehiculo v: pila){
             modelos.add(v.getModelo());
@@ -167,7 +167,7 @@ public class InicioController implements Initializable {
                 cbModelo.getItems().add(s);
             }
         }
-    }
+    }*/
     
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
         List<Integer> kms = new LinkedListPRS<Integer>();
@@ -187,7 +187,6 @@ public class InicioController implements Initializable {
         cargarPreciosCbx(pila);
         cargarAniosCbx(pila);
         cargarKmCbx(pila);
-        cargarModelosCbx(pila);
         cargarMarcasCbx(pila);
 
     }
@@ -206,5 +205,20 @@ public class InicioController implements Initializable {
             anioHasta.getItems().add(x);
         }
         
+    }
+
+    @FXML
+    private void seleccionMarca(ActionEvent event) {
+        cbModelo.getItems().clear();
+        String marca = cbMarca.getValue();
+        PilaPRS<Vehiculo> pila = filtroMarca.filtrarPorMarca(LecturaArchivos.leerVehiculos("Vehiculos.txt"), marca);
+        for(Vehiculo c: pila){
+            if(!cbModelo.getItems().contains(c.getModelo()))
+                cbModelo.getItems().add(c.getModelo());
+        }
+    }
+
+    @FXML
+    private void crearVehiculo(ActionEvent event) {
     }
 }
