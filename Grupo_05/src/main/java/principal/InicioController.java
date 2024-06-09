@@ -31,6 +31,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import filtros.*;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -220,5 +225,20 @@ public class InicioController implements Initializable {
 
     @FXML
     private void crearVehiculo(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = App.loadFXML("crearVehiculo");
+            Scene s = new Scene(fxmlLoader.load(), 810, 440);
+            //juegoController jc = fxmlLoader.getController();
+            //jc.recibirValores(txt_nombre.getText(), colorFondo);
+            Stage stage = new Stage();
+            stage.setTitle("Crea tu Vehículo");
+            stage.setScene(s);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
     }
 }
