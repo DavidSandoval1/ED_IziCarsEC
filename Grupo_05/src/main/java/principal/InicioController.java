@@ -4,8 +4,7 @@
  */
 package principal;
 
-import MyTDAs.LinkedListPRS;
-import MyTDAs.PilaPRS;
+import MyTDAs.*;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
 import java.net.URL;
@@ -34,6 +33,7 @@ import filtros.*;
 import java.io.IOException;
 import java.util.Collections;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -46,6 +46,8 @@ import ordenamiento.*;
  * @author User
  */
 public class InicioController implements Initializable {
+    public static PilaPRS<Vehiculo> vehiculosSistema = LecturaArchivos.leerVehiculos("Vehiculos.txt");
+    public static CircularListPRS<Vehiculo> vehiculosFiltrados = new CircularListPRS();
 
     @FXML
     private VBox filtrosVBox;
@@ -87,15 +89,16 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        vehiculosFiltrados.addAll(vehiculosSistema);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        PilaPRS<Vehiculo> pila = LecturaArchivos.leerVehiculos("Vehiculos.txt");
-        cargarTodosCbx(pila);
-        cargarVehiculosFlowPane(pila);
+        
+        cargarTodosCbx(vehiculosSistema);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
         
     }    
     
-    public void cargarVehiculosFlowPane(PilaPRS<Vehiculo> pila){
+    public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
         flwPane.getChildren().clear();
         for (Vehiculo v: pila){
             VBox cajaVehiculo = new VBox(10);
@@ -103,8 +106,13 @@ public class InicioController implements Initializable {
             cajaVehiculo.setPadding(new Insets(5));
             cajaVehiculo.setOnMouseClicked((MouseEvent e) -> {
                 try {
+                    Vehiculo vehiculoActual = vehiculosFiltrados.actualNode(v);
                     FXMLLoader fxmlLoader = App.loadFXML("carrusel");
-                    Scene s = new Scene(fxmlLoader.load(), 900, 460);
+                    Parent root = fxmlLoader.load();
+                    //Cargar el vehiculo actual al carrusel
+                    CarruselController carruselController = fxmlLoader.getController();
+                    carruselController.cargarController(vehiculoActual);
+                    Scene s = new Scene(root, 900, 460);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);
                     Stage stage = new Stage();

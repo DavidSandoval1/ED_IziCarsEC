@@ -166,6 +166,10 @@ public class CircularListPRS<E> implements List<E> {
         }
     }
     
+    public E retornarActual(){
+        return actual.contenido;
+    }
+    
     public E actualNode(E element){
         actual = this.primero;
         if (this.contains(element)){

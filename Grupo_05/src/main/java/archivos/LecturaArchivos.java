@@ -18,7 +18,6 @@ import java.io.FileReader;
 public class LecturaArchivos {
     public static String pathFiles = "src/main/resources/files/";
     public static String pathImages = "src/main/resources/img/";
-    public static PilaPRS<Vehiculo> vehiculos = leerVehiculos("Vehiculos.txt");
     
     public static PilaPRS<Vehiculo> leerVehiculos(String nombreArchivo){
         PilaPRS<Vehiculo> vehiculos = new PilaPRS();
