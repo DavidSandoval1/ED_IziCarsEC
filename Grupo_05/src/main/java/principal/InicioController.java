@@ -37,6 +37,7 @@ import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -87,6 +88,8 @@ public class InicioController implements Initializable {
     private RadioButton rdBtnAnio;
     @FXML
     private RadioButton rdBtnModelo;
+    @FXML
+    private TextField tfBuscador;
     @FXML
     private ScrollPane scrlPane;
     @FXML
