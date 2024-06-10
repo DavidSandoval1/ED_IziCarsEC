@@ -103,6 +103,8 @@ public class InicioController implements Initializable {
         cargarTodosCbx(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
         
+        
+        
     }    
     
     public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
@@ -270,7 +272,6 @@ public class InicioController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
     }
 
     @FXML

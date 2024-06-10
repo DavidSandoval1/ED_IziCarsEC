@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -9,8 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" minHeight="460.0" minWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="principal.CrearVehiculoController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CrearVehiculoController">
    <children>
       <VBox prefHeight="460.0" prefWidth="900.0">
          <children>
@@ -35,7 +35,7 @@
                         <Insets left="15.0" right="15.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnCrear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnCrear" prefHeight="56.0" prefWidth="130.0" text="Crear" textFill="#bc1b1b">
+                  <Button fx:id="btnCrear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#crearVehiculoBtn" prefHeight="56.0" prefWidth="130.0" text="Crear" textFill="#bc1b1b">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -151,7 +151,7 @@
                         <Insets bottom="15.0" left="10.0" right="10.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="305.0" prefWidth="300.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="305.0" prefWidth="300.0">
                      <children>
                         <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Historial de Accidentes:" textAlignment="CENTER">
                            <font>
@@ -161,7 +161,7 @@
                               <Insets right="15.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="txtFlblHistA" alignment="TOP_LEFT" minHeight="30.0" minWidth="280.0" prefHeight="30.0" prefWidth="280.0" promptText="AAAA-MM-DD: Descripcion1, AAAA-MM-DD: Descripcion2, .... " />
+                        <TextField fx:id="txtFHistA" alignment="TOP_LEFT" minHeight="30.0" minWidth="280.0" prefHeight="30.0" prefWidth="280.0" promptText="AAAA-MM-DD: Descripcion1, AAAA-MM-DD: Descripcion2, .... " />
                         <Label prefHeight="39.0" prefWidth="300.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="Historial de Modificaciones:" textAlignment="CENTER">
                            <font>
                               <Font name="Cambria Bold" size="21.0" />
@@ -183,6 +183,16 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
+                        <Button fx:id="btnSubir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#subirImagen" prefHeight="56.0" prefWidth="150.0" text="Subir Imagen" textFill="#bc1b1b">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <ImageView fx:id="imView" fitHeight="115.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets top="11.0" />
+                           </VBox.margin>
+                        </ImageView>
                      </children>
                      <padding>
                         <Insets bottom="15.0" left="10.0" right="10.0" />
