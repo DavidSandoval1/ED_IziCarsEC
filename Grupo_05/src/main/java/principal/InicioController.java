@@ -107,10 +107,7 @@ public class InicioController implements Initializable {
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         
         cargarTodosCbx(vehiculosSistema);
-        cargarVehiculosFlowPane(vehiculosFiltrados);
-        
-        
-        
+        cargarVehiculosFlowPane(vehiculosFiltrados);  
     }    
     
     public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
@@ -436,5 +433,23 @@ public class InicioController implements Initializable {
         else if (rdBtnKm.isSelected())      ordenarPorKilometraje();
         else if (rdBtnAnio.isSelected())    ordenarPorAnio();
         else if (rdBtnModelo.isSelected())  ordenarPorModelo();
+    }
+
+    @FXML
+    private void misVehiculos(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = App.loadFXML("vUser");
+            Scene s = new Scene(fxmlLoader.load(), 900, 460);
+            //juegoController jc = fxmlLoader.getController();
+            //jc.recibirValores(txt_nombre.getText(), colorFondo);
+            Stage stage = new Stage();
+            stage.setTitle("Tus Vehículos");
+            stage.setScene(s);
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
