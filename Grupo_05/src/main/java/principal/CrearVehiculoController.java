@@ -56,6 +56,17 @@ public class CrearVehiculoController implements Initializable {
 
     @FXML
     private void btnCrear(ActionEvent event) {
+        String prop = txtFPropietario.getText();
+        String marca = txtFMarca.getText();
+        String modelo = txtFModelo.getText();
+        String ubicacion = txtFUbicacion.getText();
+        String motor = txtFMotor.getText();
+        String transmision = txtFTransmision.getText();
+        double precio = Double.valueOf(txtFPrecio.getText());
+        double peso = Double.valueOf(txtFPeso.getText());
+        int anio = Integer.valueOf(txtFAnio.getText());
+        int km = Integer.valueOf(txtFKm.getText());
+        
         
     }
     

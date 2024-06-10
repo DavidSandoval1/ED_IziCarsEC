@@ -78,7 +78,7 @@
                               </Text>
                               <HBox prefHeight="32.0" prefWidth="170.0" spacing="10.0">
                                  <children>
-                                    <ComboBox fx:id="precioDesde" prefHeight="25.0" prefWidth="85.0" promptText="Desde">
+                                    <ComboBox fx:id="precioDesde" onAction="#seleccionPrecio" prefHeight="25.0" prefWidth="85.0" promptText="Desde">
                                        <HBox.margin>
                                           <Insets left="7.0" />
                                        </HBox.margin>
@@ -148,7 +148,7 @@
                               </Text>
                               <HBox prefHeight="32.0" prefWidth="170.0" spacing="10.0">
                                  <children>
-                                    <ComboBox fx:id="kmDesde" prefHeight="25.0" prefWidth="85.0" promptText="Desde">
+                                    <ComboBox fx:id="kmDesde" onAction="#seleccionKm" prefHeight="25.0" prefWidth="85.0" promptText="Desde">
                                        <HBox.margin>
                                           <Insets left="7.0" />
                                        </HBox.margin>
