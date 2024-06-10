@@ -39,6 +39,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -108,9 +110,6 @@ public class InicioController implements Initializable {
         
         cargarTodosCbx(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
-        
-        
-        
     }    
     
     public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
@@ -119,6 +118,7 @@ public class InicioController implements Initializable {
             VBox cajaVehiculo = new VBox(10);
             cajaVehiculo.setPrefSize(196, 250);
             cajaVehiculo.setPadding(new Insets(5));
+            cajaVehiculo.setStyle("-fx-background-color:white"); 
             cajaVehiculo.setOnMouseClicked((MouseEvent e) -> {
                 try {
                     Vehiculo vehiculoActual = vehiculosFiltrados.actualNode(v);
@@ -152,7 +152,9 @@ public class InicioController implements Initializable {
             imagenVehiculo.setPreserveRatio(true);
             //Label de informacion
             Label infoVehiculo = new Label(v.getMarca()+" "+v.getModelo()+" - "+v.getAnio());
+            infoVehiculo.setFont(Font.font("System", FontWeight.BOLD, 14));
             Label infoPrecio = new Label(v.getPrecio()+"$ - "+v.getKilometraje()+" Km");
+            infoPrecio.setFont(Font.font("System", FontWeight.BOLD, 12));
             
             cajaVehiculo.getChildren().addAll(imagenVehiculo, infoVehiculo, infoPrecio);
             flwPane.getChildren().add(cajaVehiculo);
