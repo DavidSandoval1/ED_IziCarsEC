@@ -450,7 +450,7 @@ public class CircularListPRS<E> implements List<E> {
 
     @Override
     public void sort(Comparator<? super E> c) {
-        List.super.sort(c); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        //List.super.sort(c); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     
     @Override

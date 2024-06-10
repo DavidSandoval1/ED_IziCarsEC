@@ -172,7 +172,7 @@
                                  <children>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="7.0">
                                        <children>
-                                          <RadioButton fx:id="rdBtnPrecio" mnemonicParsing="false" text="Precio">
+                                          <RadioButton fx:id="rdBtnPrecio" mnemonicParsing="false" onAction="#ordenarTodo" text="Precio">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
@@ -180,13 +180,13 @@
                                                 <ToggleGroup fx:id="grupo1" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="rdBtnModelo" mnemonicParsing="false" text="Modelo" toggleGroup="$grupo1" />
-                                          <RadioButton fx:id="rdBtnKm" mnemonicParsing="false" text="Kilometraje" toggleGroup="$grupo1">
+                                          <RadioButton fx:id="rdBtnModelo" mnemonicParsing="false" onAction="#ordenarTodo" text="Modelo" toggleGroup="$grupo1" />
+                                          <RadioButton fx:id="rdBtnKm" mnemonicParsing="false" onAction="#ordenarTodo" text="Kilometraje" toggleGroup="$grupo1">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
                                           </RadioButton>
-                                          <RadioButton fx:id="rdBtnAnio" mnemonicParsing="false" text="Año" toggleGroup="$grupo1" />
+                                          <RadioButton fx:id="rdBtnAnio" mnemonicParsing="false" onAction="#ordenarTodo" text="Año" toggleGroup="$grupo1" />
                                        </children>
                                        <HBox.margin>
                                           <Insets left="7.0" />

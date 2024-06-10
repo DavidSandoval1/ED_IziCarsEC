@@ -107,7 +107,7 @@ public class Vehiculo {
     
     @Override
     public String toString(){
-        return marca+" "+modelo;
+        return marca+" "+modelo+"| "+kilometraje+"Km";
     }
     
     public String getImagen() {

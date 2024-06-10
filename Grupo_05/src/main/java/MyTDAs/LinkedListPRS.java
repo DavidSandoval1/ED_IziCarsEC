@@ -246,7 +246,7 @@ public class LinkedListPRS<E> implements List<E> {
     public boolean remove(Object o) {
         if ( o == null ) return false;
         for ( int i = 0; i<this.size; i++){
-            if(this.get(i).equals(o)) {
+            if (this.get(i).equals(o)){
                 this.remove(i);
                 return true;
             }
@@ -345,30 +345,29 @@ public class LinkedListPRS<E> implements List<E> {
     @Override
     public E remove(int index) {
         if ( index < 0 || index >= this.size() ) throw new NullPointerException();
-        Node iNode = this.primero;
+        Node refNode = this.primero;
+        Node ultimoRetornado;
         E element = null;
         if ( index == 0 ){
-            element = iNode.contenido;
-            iNode = iNode.sig;
-            if ( this.size() > 1 ) iNode.ant = null;
-            this.primero = iNode;
-        } else if ( index == this.size() - 1 ) {
-            Node jNode = this.ultimo;
-            element = jNode.contenido;
-            jNode = jNode.ant;
-            jNode.sig = null;
-            this.ultimo = jNode;
-        } else {
-            iNode = iNode.sig;
-            for ( int i = 1; i <= index; i++ ){
+            element = refNode.contenido;
+            this.primero = refNode.sig;
+            refNode = null;
+        }else if ( index == this.size - 1){
+            refNode = this.ultimo;
+            element = refNode.contenido;
+            this.ultimo = refNode.ant;
+            refNode = null;
+        }else{
+            ultimoRetornado = refNode;
+            refNode = refNode.sig;
+            for ( int i = 1; i <= index ; i++ ){
                 if ( i == index ){
-                   element = iNode.contenido;
-                   Node befNode = iNode.ant;
-                   Node aftNode = iNode.sig;
-                   befNode.sig = aftNode;
-                   aftNode.ant = befNode;
+                    element = refNode.contenido;
+                    refNode.sig.ant = ultimoRetornado;
+                    ultimoRetornado.sig = refNode.sig;
                 }
-                
+                ultimoRetornado = refNode;
+                refNode = refNode.sig;
             }
         }
         this.size--;

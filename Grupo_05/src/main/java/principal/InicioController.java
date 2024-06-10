@@ -5,6 +5,7 @@
 package principal;
 
 import MyTDAs.*;
+import ordenamiento.*;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
 import java.net.URL;
@@ -32,10 +33,11 @@ import javafx.scene.paint.Color;
 import filtros.*;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -76,6 +78,8 @@ public class InicioController implements Initializable {
     private Button btnAscDesc;
     @FXML
     private Button btnReload;
+    @FXML
+    private ToggleGroup grupo1;
     @FXML
     private RadioButton rdBtnPrecio;
     @FXML
@@ -156,7 +160,7 @@ public class InicioController implements Initializable {
     public void cargarAniosCbx(PilaPRS<Vehiculo> pila){
         anioDesde.getItems().clear();
         anioHasta.getItems().clear();
-        List<Integer> anios = new LinkedListPRS<Integer>();
+        List<Integer> anios = new LinkedListPRS();
         for(Vehiculo v: pila){
             anios.add(v.getAnio());
         }
@@ -176,13 +180,13 @@ public class InicioController implements Initializable {
     public void cargarPreciosCbx(PilaPRS<Vehiculo> pila){
         precioDesde.getItems().clear();
         precioHasta.getItems().clear();
-        List<Double> precios = new LinkedListPRS<Double>();
+        List<Double> precios = new LinkedListPRS();
         for(Vehiculo v: pila){
             precios.add(v.getPrecio());
         }
         
         Collections.sort(precios, (p1,p2) ->{
-            return new cmpPrecio().compare(p1, p2);
+            return cmpPrecio.compare(p1, p2);
         });
         
         for(Double d: precios){
@@ -195,7 +199,7 @@ public class InicioController implements Initializable {
     
     public void cargarMarcasCbx(PilaPRS<Vehiculo> pila){
         cbMarca.getItems().clear();
-        List<String> marcas = new LinkedListPRS<String>();
+        List<String> marcas = new LinkedListPRS();
         for(Vehiculo v: pila){
             marcas.add(v.getMarca());
         }
@@ -227,13 +231,13 @@ public class InicioController implements Initializable {
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
         kmDesde.getItems().clear();
         kmHasta.getItems().clear();
-        List<Integer> kms = new LinkedListPRS<Integer>();
+        List<Integer> kms = new LinkedListPRS();
         for(Vehiculo v: pila){
             kms.add(v.getKilometraje());
         }
         
         Collections.sort(kms, (k1,k2)->{
-            return new cmpKilom().compare(k1, k2);
+            return cmpKilom.compare(k1, k2);
         });
         
         for(Integer i: kms){
@@ -250,10 +254,6 @@ public class InicioController implements Initializable {
         cargarKmCbx(pila);
         cargarMarcasCbx(pila);
 
-    }
-    
-    public static void cargarCarruselVehiculos(){
-        
     }
 
     @FXML
@@ -306,7 +306,7 @@ public class InicioController implements Initializable {
     private void seleccionAnio(ActionEvent event) {
         Integer desde = anioDesde.getValue();
         anioHasta.getItems().clear();
-        if(desde == anioDesde.getItems().get(anioDesde.getItems().size()-1)){
+        if(Objects.equals(desde, anioDesde.getItems().get(anioDesde.getItems().size()-1))){
             anioHasta.getItems().add(desde);
             return;
         } 
@@ -322,7 +322,7 @@ public class InicioController implements Initializable {
         cbModelo.getItems().clear();
         String marca = cbMarca.getValue();
         PilaPRS<Vehiculo> pila = filtroMarca.filtrarPorMarca(LecturaArchivos.leerVehiculos("Vehiculos.txt"), marca);
-        LinkedListPRS<String> modelos = new LinkedListPRS<String>();
+        LinkedListPRS<String> modelos = new LinkedListPRS();
         for(Vehiculo v: pila){
             if(!modelos.contains(v.getModelo())) modelos.add(v.getModelo());
         }
@@ -365,20 +365,20 @@ public class InicioController implements Initializable {
         if ( kmD == null ) kmD = kmDesde.getItems().get(0);
         if ( kmH == null ) kmH = kmHasta.getItems().get(kmHasta.getItems().size()-1);
         vehiculos = filtroKilom.filtrarPorKilom(vehiculos,kmD, kmH);
+        //Añandiendo vehiculos al flowPane
         vehiculosOrdenados.addAll(vehiculos);
-        //LOGICA PARA ORDENARLOS
-        System.out.println(rdBtnKm.getUserData());
         vehiculosFiltrados.clear();
         vehiculosFiltrados.addAll(vehiculosOrdenados);
+        ordenarTodo();
         cargarVehiculosFlowPane(vehiculosFiltrados);
     }
     
     @FXML
     private void limpiarBusqueda(){
+        grupo1.selectToggle(null);
         vehiculosFiltrados.clear();
         vehiculosFiltrados.addAll(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
-        //cargarTodosCbx(vehiculosSistema);
     }
     
     @FXML
@@ -390,5 +390,48 @@ public class InicioController implements Initializable {
     @FXML
     private void recargarVehiculos(){
         cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    
+    private void ordenarPorAnio(){
+        LinkedListPRS<Vehiculo> listaOrdenada = new LinkedListPRS();
+        listaOrdenada.addAll(vehiculosFiltrados);
+        cmpAnio.ordenarAnio(listaOrdenada);
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(listaOrdenada);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    
+    private void ordenarPorKilometraje(){
+        LinkedListPRS<Vehiculo> listaOrdenada = new LinkedListPRS();
+        listaOrdenada.addAll(vehiculosFiltrados);
+        cmpKilom.ordenarKilom(listaOrdenada);
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(listaOrdenada);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    
+    private void ordenarPorModelo(){
+        LinkedListPRS<Vehiculo> listaOrdenada = new LinkedListPRS();
+        listaOrdenada.addAll(vehiculosFiltrados);
+        cmpMarcayModelo.ordenarModelo(listaOrdenada);
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(listaOrdenada);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    
+    private void ordenarPorPrecio(){
+        LinkedListPRS<Vehiculo> listaOrdenada = new LinkedListPRS();
+        listaOrdenada.addAll(vehiculosFiltrados);
+        cmpPrecio.ordenarPrecio(listaOrdenada);
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(listaOrdenada);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    @FXML
+    private void ordenarTodo(){
+        if      (rdBtnPrecio.isSelected())  ordenarPorPrecio();
+        else if (rdBtnKm.isSelected())      ordenarPorKilometraje();
+        else if (rdBtnAnio.isSelected())    ordenarPorAnio();
+        else if (rdBtnModelo.isSelected())  ordenarPorModelo();
     }
 }
