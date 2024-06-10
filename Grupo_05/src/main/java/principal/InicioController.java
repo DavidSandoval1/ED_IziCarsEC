@@ -33,6 +33,7 @@ import javafx.scene.paint.Color;
 import filtros.*;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Comparator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -177,6 +178,10 @@ public class InicioController implements Initializable {
         for(Vehiculo v: pila){
             marcas.add(v.getMarca());
         }
+        
+        Collections.sort(marcas, (m1,m2) -> {
+            return m1.compareTo(m2);
+        });
             
         for(String s: marcas){
             if(!cbMarca.getItems().contains(s)){
@@ -229,29 +234,6 @@ public class InicioController implements Initializable {
     }
 
     @FXML
-    private void seleccionAnio(ActionEvent event) {
-        Integer desde = anioDesde.getValue();
-        anioHasta.getItems().clear();
-        int x = desde, y = anioDesde.getItems().get(anioDesde.getItems().size()-1);
-
-        for(x=x; x<=y; x++){
-            anioHasta.getItems().add(x);
-        }
-        
-    }
-
-    @FXML
-    private void seleccionMarca(ActionEvent event) {
-        cbModelo.getItems().clear();
-        String marca = cbMarca.getValue();
-        PilaPRS<Vehiculo> pila = filtroMarca.filtrarPorMarca(LecturaArchivos.leerVehiculos("Vehiculos.txt"), marca);
-        for(Vehiculo c: pila){
-            if(!cbModelo.getItems().contains(c.getModelo()))
-                cbModelo.getItems().add(c.getModelo());
-        }
-    }
-
-    @FXML
     private void crearVehiculo(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = App.loadFXML("crearVehiculo");
@@ -268,6 +250,66 @@ public class InicioController implements Initializable {
             ex.printStackTrace();
         }
         
+    }
+
+    @FXML
+    private void seleccionPrecio(ActionEvent event) {
+        precioHasta.getItems().clear();
+        double desde = precioDesde.getValue();
+        if(desde == precioDesde.getItems().get(precioDesde.getItems().size()-1)){
+            precioHasta.getItems().add(desde);
+            return;
+        } 
+        int x = precioDesde.getItems().indexOf(desde)+1, y = precioDesde.getItems().size()-1;
+        for(x=x; x<=y; x++){
+            precioHasta.getItems().add(precioDesde.getItems().get(x));
+        }   
+    }
+
+    @FXML
+    private void seleccionKm(ActionEvent event) {
+        kmHasta.getItems().clear();
+        int desde = kmDesde.getValue();
+        if(desde == kmDesde.getItems().get(kmDesde.getItems().size()-1)){
+            kmHasta.getItems().add(desde);
+            return;
+        } 
+        int x = kmDesde.getItems().indexOf(desde)+1, y = kmDesde.getItems().size()-1;
+        for(x=x; x<=y; x++){
+            kmHasta.getItems().add(kmDesde.getItems().get(x));
+        }
+    }
+    
+    @FXML
+    private void seleccionAnio(ActionEvent event) {
+        Integer desde = anioDesde.getValue();
+        anioHasta.getItems().clear();
+        if(desde == anioDesde.getItems().get(anioDesde.getItems().size()-1)){
+            anioHasta.getItems().add(desde);
+            return;
+        } 
+        int x = desde+1, y = anioDesde.getItems().get(anioDesde.getItems().size()-1);
+        for(x=x; x<=y; x++){
+            anioHasta.getItems().add(x);
+        }
+        
+    }
+
+    @FXML
+    private void seleccionMarca(ActionEvent event) {
+        cbModelo.getItems().clear();
+        String marca = cbMarca.getValue();
+        PilaPRS<Vehiculo> pila = filtroMarca.filtrarPorMarca(LecturaArchivos.leerVehiculos("Vehiculos.txt"), marca);
+        LinkedListPRS<String> modelos = new LinkedListPRS<String>();
+        for(Vehiculo v: pila){
+            if(!modelos.contains(v.getModelo())) modelos.add(v.getModelo());
+        }
+        Collections.sort(modelos, (m1,m2) -> {
+            return m1.compareTo(m2);
+        });
+        for(String m: modelos){
+            cbModelo.getItems().add(m);
+        }
     }
 
     
