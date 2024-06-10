@@ -320,5 +320,47 @@ public class InicioController implements Initializable {
         }
     }
 
+    @FXML
+    private void filtrarBusqueda(){
+        PilaPRS<Vehiculo> vehiculos = vehiculosSistema;
+        LinkedListPRS<Vehiculo> vehiculosOrdenados = new LinkedListPRS();
+        //Filtrando por Precio
+        Double precioD = precioDesde.getValue();
+        Double precioH = precioHasta.getValue();
+        if ( precioD == null ) precioD = precioDesde.getItems().get(0);
+        if ( precioH == null ) precioH = precioHasta.getItems().get(precioHasta.getItems().size()-1);
+        vehiculos = filtroPrecio.filtrarPorPrecio(vehiculos, precioD, precioH);
+        //Filtrando por Anio
+        Integer anioD = anioDesde.getValue();
+        Integer anioH = anioHasta.getValue();
+        if ( anioD == null ) anioD = anioDesde.getItems().get(0);
+        if ( anioH == null ) anioH = anioHasta.getItems().get(anioHasta.getItems().size()-1);
+        vehiculos = filtroAnio.filtrarPorAnio(vehiculos, anioD, anioH);
+        //Filtrando por Marca
+        String marca = cbMarca.getValue();
+        String modelo = cbModelo.getValue();
+        if ( marca != null ){
+            vehiculos = filtroMarca.filtrarPorMarca(vehiculos, marca);
+            if ( modelo != null ){
+                vehiculos = filtroModelo.filtrarPorModelo(vehiculos, modelo);
+            }
+        }
+        //Filtrando por Kilometraje
+        Integer kmD = kmDesde.getValue();
+        Integer kmH = kmHasta.getValue();
+        if ( kmD == null ) kmD = kmDesde.getItems().get(0);
+        if ( kmH == null ) kmH = kmHasta.getItems().get(kmHasta.getItems().size()-1);
+        vehiculos = filtroKilom.filtrarPorKilom(vehiculos,kmD, kmH);
+        vehiculosOrdenados.addAll(vehiculos);
+        //LOGICA PARA ORDENARLOS
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(vehiculosOrdenados);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
     
+    @FXML
+    private void limpiarBusqueda(){
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(vehiculosSistema);
+    }
 }

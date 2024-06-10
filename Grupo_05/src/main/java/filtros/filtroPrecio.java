@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @author Pc
  */
 public class filtroPrecio {
-    public static PilaPRS<Vehiculo> filtrarPorKilom(PilaPRS<Vehiculo> vehiculos, int desde, int hasta){
+    public static PilaPRS<Vehiculo> filtrarPorPrecio(PilaPRS<Vehiculo> vehiculos, double desde, double hasta){
         PilaPRS<Vehiculo> pilaVehiculos = new PilaPRS();
         List<Vehiculo> vehiculosFiltrados = vehiculos.stream()
                 .filter( v -> (v.getPrecio() >= desde) && (v.getPrecio() <= hasta) )

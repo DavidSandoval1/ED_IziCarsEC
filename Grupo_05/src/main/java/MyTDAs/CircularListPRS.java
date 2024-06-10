@@ -310,6 +310,7 @@ public class CircularListPRS<E> implements List<E> {
     public void clear() {
         this.primero = null;
         this.ultimo = null;
+        this.actual = null;
         this.size = 0;
     }
 
