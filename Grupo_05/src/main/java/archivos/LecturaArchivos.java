@@ -6,7 +6,7 @@ package archivos;
 
 import MyTDAs.LinkedListPRS;
 import MyTDAs.PilaPRS;
-import clases.Vehiculo;
+import clases.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,6 +18,7 @@ import java.io.FileReader;
 public class LecturaArchivos {
     public static String pathFiles = "src/main/resources/files/";
     public static String pathImages = "src/main/resources/img/";
+    public static String pathFilesUser = "src/main/resources/user/";
     
     public static PilaPRS<Vehiculo> leerVehiculos(String nombreArchivo){
         PilaPRS<Vehiculo> vehiculos = new PilaPRS();
@@ -48,7 +49,38 @@ public class LecturaArchivos {
         }catch (Exception e){
             System.out.println("Ocurrió una excepción en la lectura de Vehículos");;
         }
+        return vehiculos;
+    }
+    
+    public static PilaPRS<Vehiculo> leerVehiculosUsuario(String nombreArchivo){
+        PilaPRS<Vehiculo> vehiculos = new PilaPRS();
         
+        try ( BufferedReader bf = new BufferedReader( new FileReader(pathFilesUser+nombreArchivo)) ){
+            String linea = bf.readLine();
+            while ( (linea = bf.readLine()) != null ){
+                String[] dato = linea.split(";");
+                VehiculoUsuario v = new VehiculoUsuario();
+                
+                v.setPropietario(dato[0]) ;v.setImagen(pathFilesUser+dato[1]); v.setUbicacion(dato[2]);
+                v.setPrecio(Double.parseDouble(dato[3])); v.setMarca(dato[4]); v.setModelo(dato[5]); 
+                v.setAnio(Integer.parseInt(dato[6])); v.setKilometraje(Integer.parseInt(dato[7])); 
+                v.setMotor(dato[8]); v.setTransmision(dato[9]); v.setPeso(Double.parseDouble(dato[10]));
+                
+                LinkedListPRS<String> historialA = new LinkedListPRS();
+                for (String e: dato[11].split(",")) historialA.add(e);
+                v.setHistorialA(historialA);
+                
+                LinkedListPRS<String> historialM = new LinkedListPRS();
+                for (String e: dato[12].split(",")) historialM.add(e);
+                v.setHistorialM(historialM);
+                vehiculos.push(v);
+            }
+            
+        }catch (FileNotFoundException e1){
+            System.out.println("Archivo de Vehículos no encontrado");
+        }catch (Exception e){
+            System.out.println("Ocurrió una excepción en la lectura de Vehículos");;
+        }
         return vehiculos;
     }
 }

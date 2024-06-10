@@ -14,6 +14,10 @@ public class VehiculoUsuario extends Vehiculo{
     public static String pathImages = "src/main/resources/user/";
     private String propietario;
     
+    public VehiculoUsuario(){
+        
+    }
+    
     public VehiculoUsuario(String propietario, String imagen, String ubicacion, 
             double precio, String marca, String modelo, int anio, 
             int kilometraje, String motor, String transmision, double peso, 
