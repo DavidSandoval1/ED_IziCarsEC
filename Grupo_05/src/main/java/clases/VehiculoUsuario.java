@@ -14,7 +14,8 @@ public class VehiculoUsuario extends Vehiculo{
     public static String pathImages = "src/main/resources/user/";
     private String propietario;
     
-    public VehiculoUsuario() {
+    public VehiculoUsuario(){
+
         
     }
     

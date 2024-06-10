@@ -1,0 +1,2 @@
+propietario[0];imagen[1];ubicacion[2];precio[3];marca[4];modelo[5];anio[6];kilometraje[7];motor[8];transmision[9];peso[10];historialA[11];historialM[12]
+bruno;nah bro.PNG;bruno;123.0;bruno;bruno;231;321;bruno;bruno;132.0;2313-32-31: bruno,2013-32-32: bruno2;2323-43-12: brunouwu

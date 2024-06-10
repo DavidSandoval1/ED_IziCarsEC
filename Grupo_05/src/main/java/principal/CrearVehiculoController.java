@@ -6,7 +6,9 @@ package principal;
 
 import MyTDAs.*;
 import clases.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -92,20 +94,26 @@ public class CrearVehiculoController implements Initializable {
             double peso = Double.valueOf(txtFPeso.getText());
             int anio = Integer.valueOf(txtFAnio.getText());
             int km = Integer.valueOf(txtFKm.getText());
-
+            
+            StringBuilder sbHA = new StringBuilder();
             LinkedListPRS<String> HistA = new LinkedListPRS<String>();
             if(!txtFHistA.getText().isEmpty()){
                 String[] tokensHA = txtFHistA.getText().split(", ");
                 for(int i = 0; i< tokensHA.length; i++){
                     HistA.add(tokensHA[i]);
+                    if(i==tokensHA.length-1) sbHA.append(tokensHA[i]);
+                    else sbHA.append(tokensHA[i] + ",");
                 }
             }
             
+            StringBuilder sbHM = new StringBuilder();
             LinkedListPRS<String> HistM = new LinkedListPRS<String>();
             if(!txtFHistM.getText().isEmpty()){
                 String[] tokensHM = txtFHistM.getText().split(", ");
                 for(int i = 0; i< tokensHM.length; i++){
                     HistM.add(tokensHM[i]);
+                    if(i==tokensHM.length-1) sbHM.append(tokensHM[i]);
+                    else sbHM.append(tokensHM[i] + ",");
                 }
             }
             
@@ -121,6 +129,16 @@ public class CrearVehiculoController implements Initializable {
                     vehiculosFiltrados.clear();
                     vehiculosFiltrados.addAll(vehiculosSistema);
                 });
+                
+                try (BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/user/VehiculosUsuario.txt", true))) {
+                    escritor.newLine();
+                    escritor.write("" + prop + ";" + nameFile + ";" + ubicacion + ";" + precio + ";" + marca + ";" + modelo + ";" + 
+                            anio + ";" + km + ";" + motor + ";" + transmision + ";" + peso + ";" + sbHA.toString() + ";" + sbHM.toString());
+                } catch (IOException e) {
+                    // Manejo de excepciones
+                    System.err.println("Error al escribir en el archivo: " + e.getMessage());
+                }
+                
                 Stage stage = (Stage) mainPane.getScene().getWindow();
                 stage.close(); //2024-12-02: perimetral, 2022-01-24: trinitaria
             }

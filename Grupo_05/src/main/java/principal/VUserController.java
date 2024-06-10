@@ -8,7 +8,6 @@ import MyTDAs.CircularListPRS;
 import MyTDAs.LinkedListPRS;
 import MyTDAs.PilaPRS;
 import archivos.LecturaArchivos;
-import archivos.LecturaUsuario;
 import clases.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +55,7 @@ public class VUserController implements Initializable {
      * Initializes the controller class.
      */
     
-    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaUsuario.leerVehiculos("VehiculosUsuario.txt");
+    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
     public static CircularListPRS<Vehiculo> vehiculosFiltroUsuario = new CircularListPRS();
     
     @Override

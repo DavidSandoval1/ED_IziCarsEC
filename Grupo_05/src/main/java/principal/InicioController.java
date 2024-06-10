@@ -37,11 +37,13 @@ import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ordenamiento.*;
 
 /**
  * FXML Controller class
@@ -51,6 +53,7 @@ import ordenamiento.*;
 public class InicioController implements Initializable {
     public static PilaPRS<Vehiculo> vehiculosSistema = LecturaArchivos.leerVehiculos("Vehiculos.txt");
     public static CircularListPRS<Vehiculo> vehiculosFiltrados = new CircularListPRS();
+    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
 
     @FXML
     private VBox filtrosVBox;
@@ -89,6 +92,8 @@ public class InicioController implements Initializable {
     @FXML
     private RadioButton rdBtnModelo;
     @FXML
+    private TextField tfBuscador;
+    @FXML
     private ScrollPane scrlPane;
     @FXML
     private FlowPane flwPane;
@@ -97,17 +102,19 @@ public class InicioController implements Initializable {
     @FXML
     private Button btnMisVehiculos;
 
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        vehiculosSistema.addAll(vehiculosUsuario);
         vehiculosFiltrados.addAll(vehiculosSistema);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         
         cargarTodosCbx(vehiculosSistema);
-        cargarVehiculosFlowPane(vehiculosFiltrados);  
+        cargarVehiculosFlowPane(vehiculosFiltrados);
     }    
     
     public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
@@ -116,6 +123,7 @@ public class InicioController implements Initializable {
             VBox cajaVehiculo = new VBox(10);
             cajaVehiculo.setPrefSize(196, 250);
             cajaVehiculo.setPadding(new Insets(5));
+            cajaVehiculo.setStyle("-fx-background-color:white"); 
             cajaVehiculo.setOnMouseClicked((MouseEvent e) -> {
                 try {
                     Vehiculo vehiculoActual = vehiculosFiltrados.actualNode(v);
@@ -124,7 +132,7 @@ public class InicioController implements Initializable {
                     //Cargar el vehiculo actual al carrusel
                     CarruselController carruselController = fxmlLoader.getController();
                     carruselController.cargarController(vehiculoActual);
-                    Scene s = new Scene(root, 900, 460);
+                    Scene s = new Scene(root, 945, 518);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);
                     Stage stage = new Stage();
@@ -149,7 +157,9 @@ public class InicioController implements Initializable {
             imagenVehiculo.setPreserveRatio(true);
             //Label de informacion
             Label infoVehiculo = new Label(v.getMarca()+" "+v.getModelo()+" - "+v.getAnio());
+            infoVehiculo.setFont(Font.font("System", FontWeight.BOLD, 14));
             Label infoPrecio = new Label(v.getPrecio()+"$ - "+v.getKilometraje()+" Km");
+            infoPrecio.setFont(Font.font("System", FontWeight.BOLD, 12));
             
             cajaVehiculo.getChildren().addAll(imagenVehiculo, infoVehiculo, infoPrecio);
             flwPane.getChildren().add(cajaVehiculo);
@@ -213,19 +223,6 @@ public class InicioController implements Initializable {
             }
         }
     }
-    
-    /*public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
-        List<String> modelos = new LinkedListPRS<String>();
-        for(Vehiculo v: pila){
-            modelos.add(v.getModelo());
-        }
-            
-        for(String s: modelos){
-            if(!cbModelo.getItems().contains(s)){
-                cbModelo.getItems().add(s);
-            }
-        }
-    }*/
     
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
         kmDesde.getItems().clear();
@@ -375,7 +372,7 @@ public class InicioController implements Initializable {
     @FXML
     private void limpiarBusqueda(){
         grupo1.selectToggle(null);
-        vehiculosFiltrados.clear();
+        vehiculosFiltrados.clear();        
         vehiculosFiltrados.addAll(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
     }
