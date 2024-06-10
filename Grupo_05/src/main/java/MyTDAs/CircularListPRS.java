@@ -166,6 +166,13 @@ public class CircularListPRS<E> implements List<E> {
         }
     }
     
+    public void invertirLista(){
+        PilaPRS<E> pila = new PilaPRS();
+        pila.addAll(this);
+        this.clear();
+        while(!pila.isEmpty()) this.add(pila.pop());
+    }
+    
     public E retornarActual(){
         return actual.contenido;
     }

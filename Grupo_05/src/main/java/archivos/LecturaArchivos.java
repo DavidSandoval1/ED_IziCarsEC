@@ -38,7 +38,7 @@ public class LecturaArchivos {
                 v.setHistorialA(historialA);
                 
                 LinkedListPRS<String> historialM = new LinkedListPRS();
-                for (String e: dato[10].split(",")) historialM.add(e);
+                for (String e: dato[11].split(",")) historialM.add(e);
                 v.setHistorialM(historialM);
                 vehiculos.push(v);
             }

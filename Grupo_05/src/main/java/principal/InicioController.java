@@ -73,11 +73,17 @@ public class InicioController implements Initializable {
     @FXML
     private Button btnLimpiar;
     @FXML
+    private Button btnAscDesc;
+    @FXML
+    private Button btnReload;
+    @FXML
     private RadioButton rdBtnPrecio;
     @FXML
     private RadioButton rdBtnKm;
     @FXML
-    private Button btnAscDesc;
+    private RadioButton rdBtnAnio;
+    @FXML
+    private RadioButton rdBtnModelo;
     @FXML
     private ScrollPane scrlPane;
     @FXML
@@ -99,6 +105,8 @@ public class InicioController implements Initializable {
         cargarTodosCbx(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
         
+        
+        
     }    
     
     public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
@@ -119,7 +127,7 @@ public class InicioController implements Initializable {
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);
                     Stage stage = new Stage();
-                    stage.setTitle("Crea tu Vehículo");
+                    stage.setTitle("Vehiculo");
                     stage.setScene(s);
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -148,6 +156,8 @@ public class InicioController implements Initializable {
     }
     
     public void cargarAniosCbx(PilaPRS<Vehiculo> pila){
+        anioDesde.getItems().clear();
+        anioHasta.getItems().clear();
         List<Integer> anios = new LinkedListPRS<Integer>();
         for(Vehiculo v: pila){
             anios.add(v.getAnio());
@@ -166,6 +176,8 @@ public class InicioController implements Initializable {
     }
     
     public void cargarPreciosCbx(PilaPRS<Vehiculo> pila){
+        precioDesde.getItems().clear();
+        precioHasta.getItems().clear();
         List<Double> precios = new LinkedListPRS<Double>();
         for(Vehiculo v: pila){
             precios.add(v.getPrecio());
@@ -184,6 +196,7 @@ public class InicioController implements Initializable {
     }
     
     public void cargarMarcasCbx(PilaPRS<Vehiculo> pila){
+        cbMarca.getItems().clear();
         List<String> marcas = new LinkedListPRS<String>();
         for(Vehiculo v: pila){
             marcas.add(v.getMarca());
@@ -214,6 +227,8 @@ public class InicioController implements Initializable {
     }*/
     
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
+        kmDesde.getItems().clear();
+        kmHasta.getItems().clear();
         List<Integer> kms = new LinkedListPRS<Integer>();
         for(Vehiculo v: pila){
             kms.add(v.getKilometraje());
@@ -259,7 +274,6 @@ public class InicioController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
     }
 
     @FXML
@@ -355,6 +369,7 @@ public class InicioController implements Initializable {
         vehiculos = filtroKilom.filtrarPorKilom(vehiculos,kmD, kmH);
         vehiculosOrdenados.addAll(vehiculos);
         //LOGICA PARA ORDENARLOS
+        System.out.println(rdBtnKm.getUserData());
         vehiculosFiltrados.clear();
         vehiculosFiltrados.addAll(vehiculosOrdenados);
         cargarVehiculosFlowPane(vehiculosFiltrados);
@@ -364,6 +379,19 @@ public class InicioController implements Initializable {
     private void limpiarBusqueda(){
         vehiculosFiltrados.clear();
         vehiculosFiltrados.addAll(vehiculosSistema);
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+        //cargarTodosCbx(vehiculosSistema);
+    }
+    
+    @FXML
+    private void reordenarVehiculos(){
+        vehiculosFiltrados.invertirLista();
+        cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+    
+    @FXML
+    private void recargarVehiculos(){
+        cargarVehiculosFlowPane(vehiculosFiltrados);
     }
     
     private void cargarVehiculosUsuario() {
