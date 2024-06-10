@@ -11,13 +11,14 @@ import MyTDAs.LinkedListPRS;
  * @author Pc
  */
 public class VehiculoUsuario extends Vehiculo{
+    public static String pathImages = "src/main/resources/user/";
     private String propietario;
-
+    
     public VehiculoUsuario(String propietario, String imagen, String ubicacion, 
             double precio, String marca, String modelo, int anio, 
             int kilometraje, String motor, String transmision, double peso, 
             LinkedListPRS<String> historialA, LinkedListPRS<String> historialM) {
-        super(imagen, ubicacion, precio, marca, modelo, anio, kilometraje, 
+        super(pathImages+imagen, ubicacion, precio, marca, modelo, anio, kilometraje, 
                 motor, transmision, peso, historialA, historialM);
         this.propietario = propietario;
     }
