@@ -32,10 +32,10 @@ import javafx.scene.paint.Color;
 import filtros.*;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Comparator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -90,6 +90,10 @@ public class InicioController implements Initializable {
     private FlowPane flwPane;
     @FXML
     private Button btnCrear;
+    @FXML
+    private Button btnUsuario;
+    @FXML
+    private ToggleGroup grupo1;
 
     /**
      * Initializes the controller class.
@@ -121,7 +125,7 @@ public class InicioController implements Initializable {
                     //Cargar el vehiculo actual al carrusel
                     CarruselController carruselController = fxmlLoader.getController();
                     carruselController.cargarController(vehiculoActual);
-                    Scene s = new Scene(root, 900, 460);
+                    Scene s = new Scene(root, 945, 518);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);
                     Stage stage = new Stage();
@@ -210,19 +214,6 @@ public class InicioController implements Initializable {
             }
         }
     }
-    
-    /*public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
-        List<String> modelos = new LinkedListPRS<String>();
-        for(Vehiculo v: pila){
-            modelos.add(v.getModelo());
-        }
-            
-        for(String s: modelos){
-            if(!cbModelo.getItems().contains(s)){
-                cbModelo.getItems().add(s);
-            }
-        }
-    }*/
     
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
         kmDesde.getItems().clear();
@@ -390,5 +381,9 @@ public class InicioController implements Initializable {
     @FXML
     private void recargarVehiculos(){
         cargarVehiculosFlowPane(vehiculosFiltrados);
+    }
+
+    @FXML
+    private void irVentanaUsuario(ActionEvent event) {
     }
 }
