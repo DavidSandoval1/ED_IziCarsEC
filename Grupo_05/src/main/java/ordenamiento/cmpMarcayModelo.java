@@ -4,14 +4,43 @@
  */
 package ordenamiento;
 
+import MyTDAs.LinkedListPRS;
 import clases.Vehiculo;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
  * @author jaren
  */
 public class cmpMarcayModelo implements Comparator<Vehiculo> {
+    
+    public static void ordenarModelo(LinkedListPRS<Vehiculo> vehiculos){
+        Set<String> marcas = new TreeSet();
+        LinkedListPRS<String> modelos = new LinkedListPRS();
+        for (Vehiculo v: vehiculos){
+            marcas.add(v.getMarca());
+            modelos.add(v.getModelo());
+        }
+        LinkedListPRS<Vehiculo> ordenado = new LinkedListPRS();
+        Collections.sort(modelos);
+        for (String s: marcas){
+            for (String m: modelos){
+                for (Vehiculo v: vehiculos){
+                    if ( v.getMarca().equals(s) && v.getModelo().equals(m) ){
+                        ordenado.add(v);
+                        vehiculos.remove(v);
+                        modelos.remove(m);
+                        break;
+                    }
+                }
+            }
+        }
+        vehiculos.clear();
+        vehiculos.addAll(ordenado);
+    }
     
     // Ordenar por Marca y Modelo (en el "main" o donde lo quiera implementar)
     // Collections.sort(vehiculos, new ComparadorPorMarcaYModelo());

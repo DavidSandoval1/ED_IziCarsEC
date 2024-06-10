@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CrearVehiculoController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CrearVehiculoController">
    <children>
       <VBox prefHeight="460.0" prefWidth="900.0">
          <children>

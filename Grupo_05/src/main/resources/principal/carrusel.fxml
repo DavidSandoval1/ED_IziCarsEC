@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" minHeight="580.0" minWidth="925.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CarruselController">
+<AnchorPane id="AnchorPane" minHeight="580.0" minWidth="925.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CarruselController">
    <children>
       <HBox layoutX="88.0" layoutY="15.0" prefHeight="550.0" prefWidth="750.0">
          <children>
