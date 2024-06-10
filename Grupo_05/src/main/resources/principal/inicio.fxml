@@ -28,7 +28,7 @@
                         <Insets left="15.0" right="15.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="42.0" prefWidth="396.0" promptText="Ingrese el nombre de un vehículo.">
+                  <TextField prefHeight="42.0" prefWidth="354.0" promptText="Ingrese el nombre de un vehículo.">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -39,12 +39,17 @@
                         <Insets left="20.0" />
                      </padding>
                   </TextField>
-                  <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#crearVehiculo" prefHeight="42.0" prefWidth="140.0" text="Crear" textAlignment="CENTER" textFill="#a81414">
+                  <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#crearVehiculo" prefHeight="42.0" prefWidth="94.0" text="Crear" textAlignment="CENTER" textFill="#a81414">
                      <HBox.margin>
-                        <Insets right="30.0" />
+                        <Insets right="15.0" />
                      </HBox.margin>
                      <font>
                         <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMisVehiculos" mnemonicParsing="false" prefHeight="42.0" prefWidth="122.0" text="Mis Vehículos" textAlignment="CENTER" textFill="#a81414">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                </children>

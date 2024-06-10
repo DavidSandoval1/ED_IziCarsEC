@@ -84,6 +84,8 @@ public class InicioController implements Initializable {
     private FlowPane flwPane;
     @FXML
     private Button btnCrear;
+    @FXML
+    private Button btnMisVehiculos;
 
     /**
      * Initializes the controller class.
@@ -362,5 +364,9 @@ public class InicioController implements Initializable {
     private void limpiarBusqueda(){
         vehiculosFiltrados.clear();
         vehiculosFiltrados.addAll(vehiculosSistema);
+    }
+    
+    private void cargarVehiculosUsuario() {
+        
     }
 }
