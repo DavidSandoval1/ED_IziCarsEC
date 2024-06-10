@@ -41,7 +41,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ordenamiento.*;
 
 /**
  * FXML Controller class
@@ -94,6 +93,9 @@ public class InicioController implements Initializable {
     private FlowPane flwPane;
     @FXML
     private Button btnCrear;
+    @FXML
+    private Button btnUsuario;
+    @FXML
 
     /**
      * Initializes the controller class.
@@ -125,7 +127,7 @@ public class InicioController implements Initializable {
                     //Cargar el vehiculo actual al carrusel
                     CarruselController carruselController = fxmlLoader.getController();
                     carruselController.cargarController(vehiculoActual);
-                    Scene s = new Scene(root, 900, 460);
+                    Scene s = new Scene(root, 945, 518);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);
                     Stage stage = new Stage();
@@ -214,19 +216,6 @@ public class InicioController implements Initializable {
             }
         }
     }
-    
-    /*public void cargarModelosCbx(PilaPRS<Vehiculo> pila){
-        List<String> modelos = new LinkedListPRS<String>();
-        for(Vehiculo v: pila){
-            modelos.add(v.getModelo());
-        }
-            
-        for(String s: modelos){
-            if(!cbModelo.getItems().contains(s)){
-                cbModelo.getItems().add(s);
-            }
-        }
-    }*/
     
     public void cargarKmCbx(PilaPRS<Vehiculo> pila){
         kmDesde.getItems().clear();
@@ -433,5 +422,9 @@ public class InicioController implements Initializable {
         else if (rdBtnKm.isSelected())      ordenarPorKilometraje();
         else if (rdBtnAnio.isSelected())    ordenarPorAnio();
         else if (rdBtnModelo.isSelected())  ordenarPorModelo();
+    }
+
+    @FXML
+    private void irVentanaUsuario(ActionEvent event) {
     }
 }
