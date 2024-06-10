@@ -52,6 +52,7 @@ import javafx.stage.Stage;
 public class InicioController implements Initializable {
     public static PilaPRS<Vehiculo> vehiculosSistema = LecturaArchivos.leerVehiculos("Vehiculos.txt");
     public static CircularListPRS<Vehiculo> vehiculosFiltrados = new CircularListPRS();
+    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
 
     @FXML
     private VBox filtrosVBox;
@@ -104,6 +105,7 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        vehiculosSistema.addAll(vehiculosUsuario);
         vehiculosFiltrados.addAll(vehiculosSistema);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -367,7 +369,7 @@ public class InicioController implements Initializable {
     @FXML
     private void limpiarBusqueda(){
         grupo1.selectToggle(null);
-        vehiculosFiltrados.clear();
+        vehiculosFiltrados.clear();        
         vehiculosFiltrados.addAll(vehiculosSistema);
         cargarVehiculosFlowPane(vehiculosFiltrados);
     }
