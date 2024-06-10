@@ -14,8 +14,11 @@ import java.util.Comparator;
 public class cmpAnio implements Comparator<Vehiculo>{
     
     @Override
-    public int compare(Vehiculo v1, Vehiculo v2)
-    {
+    public int compare(Vehiculo v1, Vehiculo v2){
         return Integer.compare(v1.getAnio(), v2.getAnio());
+    }
+    
+    public int compare(int a1, int a2){
+        return Integer.compare(a1, a2);
     }
 }

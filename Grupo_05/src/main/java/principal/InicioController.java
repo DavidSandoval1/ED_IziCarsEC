@@ -32,11 +32,13 @@ import javafx.scene.paint.Color;
 
 import filtros.*;
 import java.io.IOException;
+import java.util.Collections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import ordenamiento.*;
 
 /**
  * FXML Controller class
@@ -99,6 +101,22 @@ public class InicioController implements Initializable {
             VBox cajaVehiculo = new VBox(10);
             cajaVehiculo.setPrefSize(196, 250);
             cajaVehiculo.setPadding(new Insets(5));
+            cajaVehiculo.setOnMouseClicked((MouseEvent e) -> {
+                try {
+                    FXMLLoader fxmlLoader = App.loadFXML("carrusel");
+                    Scene s = new Scene(fxmlLoader.load(), 900, 460);
+                    //juegoController jc = fxmlLoader.getController();
+                    //jc.recibirValores(txt_nombre.getText(), colorFondo);
+                    Stage stage = new Stage();
+                    stage.setTitle("Crea tu Vehículo");
+                    stage.setScene(s);
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.show();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             
             //Borde negro
             BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2));
@@ -141,7 +159,11 @@ public class InicioController implements Initializable {
         for(Vehiculo v: pila){
             precios.add(v.getPrecio());
         }
-            
+        
+        Collections.sort(precios, (p1,p2) ->{
+            return new cmpPrecio().compare(p1, p2);
+        });
+        
         for(Double d: precios){
             if(!precioDesde.getItems().contains(d) && !precioHasta.getItems().contains(d)){
                 precioDesde.getItems().add(d);
@@ -181,6 +203,10 @@ public class InicioController implements Initializable {
         for(Vehiculo v: pila){
             kms.add(v.getKilometraje());
         }
+        
+        Collections.sort(kms, (k1,k2)->{
+            return new cmpKilom().compare(k1, k2);
+        });
         
         for(Integer i: kms){
             if(!kmDesde.getItems().contains(i) && !kmHasta.getItems().contains(i)){
@@ -228,8 +254,7 @@ public class InicioController implements Initializable {
     @FXML
     private void crearVehiculo(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader;
-            fxmlLoader = App.loadFXML("crearVehiculo");
+            FXMLLoader fxmlLoader = App.loadFXML("crearVehiculo");
             Scene s = new Scene(fxmlLoader.load(), 900, 460);
             //juegoController jc = fxmlLoader.getController();
             //jc.recibirValores(txt_nombre.getText(), colorFondo);

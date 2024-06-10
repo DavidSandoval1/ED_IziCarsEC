@@ -18,4 +18,8 @@ public class cmpKilom implements Comparator<Vehiculo>{
         return Double.compare(v1.getKilometraje(), v2.getKilometraje());
     }
     
+    public int compare(double d1, double d2) {
+        return Double.compare(d1, d2);
+    }
+    
 }

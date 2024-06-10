@@ -18,4 +18,8 @@ public class cmpPrecio implements Comparator<Vehiculo> {
         return Double.compare(v1.getPrecio(), v2.getPrecio());
     }
     
+    public int compare(Double d1, Double d2) {
+        return Double.compare(d1, d2);
+    }
+    
 }
