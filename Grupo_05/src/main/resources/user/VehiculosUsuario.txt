@@ -1,6 +1,1 @@
 propietario[0];imagen[1];ubicacion[2];precio[3];marca[4];modelo[5];anio[6];kilometraje[7];motor[8];transmision[9];peso[10];historialA[11];historialM[12]
-bruno;nah_bro.PNG;bruno;123.0;bruno;bruno;231;321;bruno;bruno;132.0;2313-32-31: bruno,2013-32-32: bruno2;2323-43-12: brunouwu
-Cabra;images.jpeg;Cabra;9999999.0;Cabra;Cabra;1965;99999;Cabra;Cabra;623.0;2313-32-31: Cabra,2013-32-32: cabra2;2323-43-12: cabrauwu
-Chimpance;image (4).png;Chimpance;123.0;Chimpance;Chimpance;1956;321;Chimpance;Chimpance;132.0;2313-32-31: bruno,2013-32-32: bruno2;2323-43-12: brunouwu
-Orangutan;ejercicios-de-circuitos-electricos-mixtos.jpg;Chimpance;123.0;Chimpance;Chimpance;1956;321;Chimpance;Chimpance;132.0;2313-32-31: bruno,2013-32-32: bruno2;2323-43-12: brunouwu
-XD;WhatsApp Image 2024-05-28 at 19.32.09 (4).jpeg;Cabra;9999999.0;XD;Cabra;1965;99999;Cabra;Cabra;623.0;2313-32-31: Cabra,2013-32-32: cabra2;2323-43-12: cabrauwu

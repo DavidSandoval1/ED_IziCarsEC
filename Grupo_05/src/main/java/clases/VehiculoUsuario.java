@@ -23,7 +23,7 @@ public class VehiculoUsuario extends Vehiculo{
             double precio, String marca, String modelo, int anio, 
             int kilometraje, String motor, String transmision, double peso, 
             LinkedListPRS<String> historialA, LinkedListPRS<String> historialM) {
-        super(pathImages+imagen, ubicacion, precio, marca, modelo, anio, kilometraje, 
+        super(imagen, ubicacion, precio, marca, modelo, anio, kilometraje, 
                 motor, transmision, peso, historialA, historialM);
         this.propietario = propietario;
     }

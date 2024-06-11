@@ -111,8 +111,10 @@ public class EditVehiculoUserController implements Initializable {
     @FXML
     private void borrarVehiculo(ActionEvent event) {
         VehiculoUsuario v = VUserController.vehiculosFiltroUsuario.retornarActual();
-        VUserController.vehiculosFiltroUsuario.remove(v);
         VUserController.vehiculosUsuario.remove(v);
+        //REESCRIBIR TXT
+        VUserController.recargarVehiculos(VUserController.vehiculosUsuario);
+        VUserController.vehiculosFiltroUsuario.addAll(VUserController.vehiculosUsuario);
         
         // Mostrar una ventana que diga que completo el borrado
         
@@ -133,17 +135,12 @@ public class EditVehiculoUserController implements Initializable {
         txtFPeso.setText(""+v.getPeso());
         txtFHistA.setText(v.getHistorialA().toString());
         txtFHistM.setText(v.getHistorialM().toString());
-        System.out.println(v.getImagen());
-        imView.setImage(new Image("file:"+v.getImagen()));
+        imView.setImage(new Image("file:"+VehiculoUsuario.pathImages+v.getImagen()));
     }
 
     @FXML
     private void editarVehiculoBtn(ActionEvent event) {
         VehiculoUsuario v = VUserController.vehiculosFiltroUsuario.retornarActual();
-        VUserController.vehiculosFiltroUsuario.clear();
-        VUserController.vehiculosUsuario.remove(v);
-        // vehiculosSistema.remove(v);
-        
         try
         {
             String prop = txtFPropietario.getText();
@@ -152,63 +149,60 @@ public class EditVehiculoUserController implements Initializable {
             String ubicacion = txtFUbicacion.getText();
             String motor = txtFMotor.getText();
             String transmision = txtFTransmision.getText();
-            double precio = Double.valueOf(txtFPrecio.getText());
-            double peso = Double.valueOf(txtFPeso.getText());
-            int anio = Integer.valueOf(txtFAnio.getText());
-            int km = Integer.valueOf(txtFKm.getText());
+            double precio = Double.parseDouble(txtFPrecio.getText());
+            double peso = Double.parseDouble(txtFPeso.getText());
+            int anio = Integer.parseInt(txtFAnio.getText());
+            int km = Integer.parseInt(txtFKm.getText());
+            if (nameFile == null){
+                nameFile = v.getImagen();
+            }
             
             StringBuilder sbHA = new StringBuilder();
-            LinkedListPRS<String> HistA = new LinkedListPRS<String>();
+            LinkedListPRS<String> HistA = new LinkedListPRS();
             if(!txtFHistA.getText().isEmpty()){
                 String[] tokensHA = txtFHistA.getText().split(", ");
                 for(int i = 0; i< tokensHA.length; i++){
                     HistA.add(tokensHA[i]);
                     if(i==tokensHA.length-1) sbHA.append(tokensHA[i]);
-                    else sbHA.append(tokensHA[i] + ",");
+                    else sbHA.append(tokensHA[i]).append(",");
                 }
             }
             
             StringBuilder sbHM = new StringBuilder();
-            LinkedListPRS<String> HistM = new LinkedListPRS<String>();
+            LinkedListPRS<String> HistM = new LinkedListPRS();
             if(!txtFHistM.getText().isEmpty()){
                 String[] tokensHM = txtFHistM.getText().split(", ");
                 for(int i = 0; i< tokensHM.length; i++){
                     HistM.add(tokensHM[i]);
                     if(i==tokensHM.length-1) sbHM.append(tokensHM[i]);
-                    else sbHM.append(tokensHM[i] + ",");
+                    else sbHM.append(tokensHM[i]).append(",");
                 }
             }
             
             if( prop == null ||  ubicacion == null || precio == 0|| marca == null || modelo == null|| anio == 0 || km == 0 ||
                 motor == null || transmision == null || peso == 0 || nameFile == null || HistA.isEmpty() || HistM.isEmpty()){
                 Alert a = new Alert(Alert.AlertType.WARNING, "Campos vacíos.");
+                a.show();
             }else{
                 VehiculoUsuario vUsuario = new VehiculoUsuario(prop, nameFile, ubicacion, precio, marca, modelo, anio, km,
             motor, transmision, peso, HistA, HistM);
-                System.out.println(vUsuario);
                 Platform.runLater(() -> {                    
+                    System.out.println(v);
+                    VUserController.vehiculosUsuario.remove(v);
+                    System.out.println(vUsuario);
+                    VUserController.vehiculosUsuario.add(vUsuario);
+                    // REESCRIBIR TXT
+                    VUserController.recargarVehiculos(VUserController.vehiculosUsuario);
+                    VUserController.vehiculosFiltroUsuario.addAll(VUserController.vehiculosUsuario);
                     
-                    vehiculosFiltrados.clear();
-                    vehiculosFiltrados.addAll(vehiculosSistema);
-                    
-                    VUserController.vehiculosUsuario.add(vUsuario);                                        
-                    VUserController.vehiculosFiltroUsuario.add(vUsuario);
                 });
-                
-                try (BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/user/VehiculosUsuario.txt", true))) {
-                    escritor.newLine();
-                    escritor.write("" + prop + ";" + nameFile + ";" + ubicacion + ";" + precio + ";" + marca + ";" + modelo + ";" + 
-                            anio + ";" + km + ";" + motor + ";" + transmision + ";" + peso + ";" + sbHA.toString() + ";" + sbHM.toString());
-                } catch (IOException e) {
-                    // Manejo de excepciones
-                    System.err.println("Error al escribir en el archivo: " + e.getMessage());
-                }
+                Stage stage = (Stage) mainPane.getScene().getWindow();
+                stage.close();
             }
         }catch(NumberFormatException e){
             Alert a = new Alert(Alert.AlertType.ERROR, "Formato incorrecto para los datos.");
             a.show();
         }
-        
     }
     
 }

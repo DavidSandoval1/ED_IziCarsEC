@@ -4,6 +4,7 @@
  */
 package principal;
 
+import archivos.LecturaArchivos;
 import clases.Vehiculo;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,7 +54,7 @@ public class CarruselController implements Initializable  {
     }
     
     public void cargarController(Vehiculo actual){
-        imgVehiculo.setImage(new Image("file:"+actual.getImagen()));
+        imgVehiculo.setImage(new Image("file:"+LecturaArchivos.pathImages+actual.getImagen()));
         lbNombreVehiculo.setText(actual.getMarca()+" "+actual.getModelo());
         lbPrecio.setText(String.format("%.2f",actual.getPrecio()));
         lbUbicacion.setText(actual.getUbicacion());

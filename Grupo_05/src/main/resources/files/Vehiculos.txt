@@ -48,4 +48,3 @@ vehiculo46.png;Cuenca;13600.90;Mia;Cielo;2011;68000;I4 1.8L;Automática;1250.40;
 vehiculo47.png;Guayaquil;17200.50;Checrolet;Comet;2016;54000;V6 3.3L;Manual;1400.20;2018-05-12: Reparación de luces;2017-04-22: Cambio de filtros,2020-09-10: Reemplazo de batería,2022-12-25: Cambio de aceite
 vehiculo48.png;Quito;19300.30;Zord;Galaxy;2021;12000;V8 5.0L;Automática;1700.40;;2022-05-20: Cambio de aceite,2023-11-30: Revisión de transmisión
 vehiculo49.png;Cuenca;19500.25;Mia;Nebula;2017;45000;V6 3.2L;Manual;1450.20;;2018-03-15: Cambio de aceite,2020-05-12: Sustitución de frenos
-
