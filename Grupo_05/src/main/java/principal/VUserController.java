@@ -9,6 +9,7 @@ import MyTDAs.LinkedListPRS;
 import MyTDAs.PilaPRS;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
+import clases.VehiculoUsuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -27,6 +28,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -55,11 +57,14 @@ public class VUserController implements Initializable {
      * Initializes the controller class.
      */
     
-    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
-    public static CircularListPRS<Vehiculo> vehiculosFiltroUsuario = new CircularListPRS();
+    public static PilaPRS<VehiculoUsuario> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
+    public static CircularListPRS<VehiculoUsuario> vehiculosFiltroUsuario = new CircularListPRS();
+    @FXML
+    private AnchorPane mainPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        vehiculosFiltroUsuario.clear();
         vehiculosFiltroUsuario.addAll(vehiculosUsuario);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -67,29 +72,33 @@ public class VUserController implements Initializable {
         cargarVehiculosFlowPane(vehiculosFiltroUsuario);
     }
     
-    public void cargarVehiculosFlowPane(CircularListPRS<Vehiculo> pila){
+    public void cargarVehiculosFlowPane(CircularListPRS<VehiculoUsuario> pila){
         flwPane.getChildren().clear();
-        for (Vehiculo v: pila){
+        for (VehiculoUsuario v: pila){
             VBox cajaVehiculo = new VBox(10);
             cajaVehiculo.setPrefSize(196, 250);
             cajaVehiculo.setPadding(new Insets(5));
             cajaVehiculo.setOnMouseClicked((MouseEvent e) -> {
                 try {
-                    Vehiculo vehiculoActual = vehiculosFiltroUsuario.actualNode(v);
-                    FXMLLoader fxmlLoader = App.loadFXML("carrusel");
+                    VehiculoUsuario vehiculoActual = vehiculosFiltroUsuario.actualNode(v);
+                    FXMLLoader fxmlLoader = App.loadFXML("editVehiculoUser");
                     Parent root = fxmlLoader.load();
                     //Cargar el vehiculo actual al carrusel
-                    CarruselController carruselController = fxmlLoader.getController();
-                    carruselController.cargarController(vehiculoActual);
+                    EditVehiculoUserController editController = fxmlLoader.getController();
+                    editController.cargarVehiculo(vehiculoActual);
                     Scene s = new Scene(root, 900, 460);
                     //juegoController jc = fxmlLoader.getController();
-                    //jc.recibirValores(txt_nombre.getText(), colorFondo);
+                    //jc.recibirValores(txt_nombre.getText(), colorFondo);                                       
                     Stage stage = new Stage();
                     stage.setTitle("Vehiculo");
                     stage.setScene(s);
                     stage.setResizable(false);
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initModality(Modality.APPLICATION_MODAL);              
+                    
                     stage.show();
+                    
+                    Stage stage2 = (Stage) mainPane.getScene().getWindow();
+                    stage2.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

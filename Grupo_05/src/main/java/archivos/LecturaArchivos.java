@@ -52,8 +52,8 @@ public class LecturaArchivos {
         return vehiculos;
     }
     
-    public static PilaPRS<Vehiculo> leerVehiculosUsuario(String nombreArchivo){
-        PilaPRS<Vehiculo> vehiculos = new PilaPRS();
+    public static PilaPRS<VehiculoUsuario> leerVehiculosUsuario(String nombreArchivo){
+        PilaPRS<VehiculoUsuario> vehiculos = new PilaPRS();
         
         try ( BufferedReader bf = new BufferedReader( new FileReader(pathFilesUser+nombreArchivo)) ){
             String linea = bf.readLine();

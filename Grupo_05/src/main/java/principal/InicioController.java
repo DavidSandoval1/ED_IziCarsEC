@@ -8,6 +8,7 @@ import MyTDAs.*;
 import ordenamiento.*;
 import archivos.LecturaArchivos;
 import clases.Vehiculo;
+import clases.VehiculoUsuario;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,7 +54,7 @@ import javafx.stage.Stage;
 public class InicioController implements Initializable {
     public static PilaPRS<Vehiculo> vehiculosSistema = LecturaArchivos.leerVehiculos("Vehiculos.txt");
     public static CircularListPRS<Vehiculo> vehiculosFiltrados = new CircularListPRS();
-    public static PilaPRS<Vehiculo> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
+    public static PilaPRS<VehiculoUsuario> vehiculosUsuario = LecturaArchivos.leerVehiculosUsuario("VehiculosUsuario.txt");
 
     @FXML
     private VBox filtrosVBox;

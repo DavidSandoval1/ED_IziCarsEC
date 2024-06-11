@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.EditVehUserController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.EditVehiculoUserController">
    <children>
       <VBox prefHeight="460.0" prefWidth="900.0">
          <children>
             <HBox alignment="CENTER" prefHeight="96.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #D80F0F, #290505);">
                <children>
-                  <Label prefHeight="96.0" prefWidth="173.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="EZCars®" textAlignment="CENTER">
+                  <Label prefHeight="95.0" prefWidth="136.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="EZCars®" textAlignment="CENTER">
                      <font>
                         <Font name="Playbill" size="50.0" />
                      </font>
@@ -27,18 +27,35 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="89.0" prefWidth="521.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="¡CREA TU VEHICULO!">
+                  <Label alignment="CENTER" prefHeight="90.0" prefWidth="457.0" style="-fx-text-fill: radial-gradient(radius 100%, #9A9292, white, darkgray);" text="¡EDITA/BORRA TU VEHICULO!">
                      <font>
-                        <Font name="Playbill" size="80.0" />
+                        <Font name="Playbill" size="50.0" />
                      </font>
                      <padding>
                         <Insets left="15.0" right="15.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnCrear" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#crearVehiculoBtn" prefHeight="56.0" prefWidth="130.0" text="Crear" textFill="#bc1b1b">
+                  <Button fx:id="btnGuardar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editarVehiculoBtn" prefHeight="56.0" prefWidth="98.0" text="Guardar" textFill="#bc1b1b" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
+                     <opaqueInsets>
+                        <Insets right="10.0" />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnBorrar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#borrarVehiculo" prefHeight="56.0" prefWidth="98.0" text="Borrar" textFill="#bc1b1b" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets right="10.0" />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
