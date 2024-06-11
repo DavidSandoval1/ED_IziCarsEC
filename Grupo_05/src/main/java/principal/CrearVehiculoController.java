@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -135,7 +137,6 @@ public class CrearVehiculoController implements Initializable {
                     escritor.write("" + prop + ";" + nameFile + ";" + ubicacion + ";" + precio + ";" + marca + ";" + modelo + ";" + 
                             anio + ";" + km + ";" + motor + ";" + transmision + ";" + peso + ";" + sbHA.toString() + ";" + sbHM.toString());
                 } catch (IOException e) {
-                    // Manejo de excepciones
                     System.err.println("Error al escribir en el archivo: " + e.getMessage());
                 }
                 
@@ -149,10 +150,31 @@ public class CrearVehiculoController implements Initializable {
     }
 
     @FXML
-    private void subirImagen(ActionEvent event) {
+    private void subirImagen(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog((Stage)mainPane.getScene().getWindow());
+        
+        if(nameFile != null && selectedFile != null){
+            Image image = new Image(selectedFile.toURI().toString());
+            imView.setImage(image);
+            try {
+                // Eliminar el archivo anterior si existe                
+                Path previousPath = Paths.get("src/main/resources/user/", nameFile);
+                if (Files.exists(previousPath)) Files.delete(previousPath);
+
+                // Ruta del archivo en el directorio de destino
+                Path targetPath = Paths.get("src/main/resources/user/", selectedFile.getName());
+                Files.copy(selectedFile.toPath(), targetPath);
+
+                // Almacenar el nombre del archivo recién cargado
+                nameFile = selectedFile.getName();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }    
+        
         
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
@@ -164,11 +186,11 @@ public class CrearVehiculoController implements Initializable {
 
             try {
                 Files.copy(selectedFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Archivo guardado en: " + targetFile.getAbsolutePath());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+    
     
 }
