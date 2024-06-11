@@ -21,3 +21,31 @@ vehiculo19.png;Guayaquil;23700.50;Mia;Nebula;2018;45000;V6 3.3L;Automática;1600
 vehiculo20.png;Quito;9300.90;Checrolet;Nova;2000;180000;I4 2.0L;Manual;1100.25;2003-02-10: Reparación de luces traseras;2002-01-18: Cambio de filtros,2005-07-22: Reemplazo de batería,2008-09-05: Reparación de motor
 vehiculo21.png;Cuenca;19300.60;Zord;Explorer;2012;67000;V6 3.2L;Automática;1450.50;;2013-10-20: Cambio de aceite,2016-04-27: Revisión de transmisión,2019-03-14: Cambio de correas
 vehiculo22.png;Guayaquil;16900.15;Mia;Stellar;2020;12000;V6 2.7L;Manual;1350.60;2022-05-18: Reparación de puertas;2021-11-12: Revisión general,2023-04-18: Sustitución de frenos
+vehiculo23.png;Guayaquil;10500.40;Checrolet;Falcon;2011;72000;V6 2.5L;Manual;1350.45;2013-04-12: Reparación de frenos;2012-06-15: Cambio de aceite,2015-09-25: Cambio de bujías
+vehiculo24.png;Quito;18800.55;Zord;Galaxy;2015;49000;V8 4.5L;Automática;1750.85;;2016-10-30: Cambio de aceite,2018-04-22: Revisión de transmisión,2020-02-18: Sustitución de frenos
+vehiculo25.png;Cuenca;15400.70;Mia;Nebula;2003;130000;I4 2.0L;Manual;1450.95;2005-11-10: Reparación de motor;2004-06-22: Cambio de filtros,2006-03-05: Reemplazo de batería,2009-08-15: Cambio de correas
+vehiculo26.png;Guayaquil;11000.85;Checrolet;Nova;2007;81000;V6 3.5L;Automática;1500.35;;2008-12-30: Cambio de aceite,2010-03-20: Revisión de transmisión,2012-07-05: Sustitución de frenos
+vehiculo27.png;Quito;9400.20;Zord;Mustang;2004;99000;V8 4.0L;Manual;1650.70;2006-08-18: Reparación de chasis;2005-02-10: Cambio de filtros,2009-06-25: Reemplazo de batería,2011-11-30: Cambio de aceite
+vehiculo28.png;Cuenca;13400.90;Mia;Cielo;2011;68000;I4 1.8L;Automática;1250.40;2012-09-12: Reparación de suspensión;2011-05-08: Cambio de filtros,2013-04-16: Reemplazo de batería,2016-07-02: Cambio de aceite
+vehiculo29.png;Guayaquil;16200.50;Checrolet;Comet;2016;54000;V6 3.3L;Manual;1400.20;2018-05-12: Reparación de luces;2017-04-22: Cambio de filtros,2020-09-10: Reemplazo de batería,2022-12-25: Cambio de aceite
+vehiculo30.png;Quito;17500.30;Zord;Galaxy;2021;12000;V8 5.0L;Automática;1700.40;;2022-05-20: Cambio de aceite,2023-11-30: Revisión de transmisión
+vehiculo31.png;Cuenca;19500.75;Mia;Nebula;2017;45000;V6 3.2L;Manual;1450.20;;2018-03-15: Cambio de aceite,2020-05-12: Sustitución de frenos
+vehiculo32.png;Guayaquil;11800.60;Checrolet;Falcon;2006;94000;V8 4.5L;Automática;1500.25;2009-07-22: Reparación de suspensión;2007-04-08: Cambio de filtros,2011-10-16: Reemplazo de batería,2013-12-02: Cambio de aceite
+vehiculo33.png;Quito;13100.35;Zord;Mustang;2019;43000;V6 3.5L;Manual;1400.45;;2020-05-20: Cambio de aceite,2021-11-30: Revisión de transmisión,2023-03-14: Sustitución de frenos
+vehiculo34.png;Cuenca;11500.50;Mia;Cielo;2015;67000;I4 1.8L;Automática;1250.70;2016-08-15: Reparación de parachoques;2017-10-20: Cambio de aceite,2018-04-27: Revisión de transmisión,2020-03-14: Cambio de correas
+vehiculo35.png;Guayaquil;19600.75;Checrolet;Nova;2021;6000;V6 3.0L;Manual;1300.30;;2022-04-15: Revisión general
+vehiculo36.png;Quito;15500.25;Zord;Galaxy;2008;77000;V8 4.5L;Automática;1600.85;2009-07-22: Reparación de faros;2009-04-22: Cambio de filtros,2011-09-10: Revisión de transmisión,2013-07-05: Cambio de correas
+vehiculo37.png;Cuenca;11700.45;Mia;Stellar;1985;250000;V6 2.5L;Manual;1400.90;1989-12-02: Reparación de luces;1986-03-12: Cambio de bujías,1990-11-27: Reemplazo de frenos,1993-06-09: Cambio de aceite
+vehiculo38.png;Guayaquil;13200.35;Checrolet;Comet;2013;73000;I4 2.0L;Automática;1250.40;2015-11-22: Reparación de suspensión;2014-07-08: Cambio de filtros,2017-03-16: Reemplazo de batería,2021-10-02: Cambio de aceite
+vehiculo39.png;Quito;16800.50;Zord;Mustang;2016;54000;V6 3.2L;Manual;1450.75;2017-08-15: Reparación de luces;2018-10-20: Cambio de aceite,2019-04-27: Revisión de transmisión,2021-03-14: Cambio de correas
+vehiculo40.png;Cuenca;15800.75;Mia;Nebula;2018;55000;I4 2.0L;Automática;1500.60;;2019-10-15: Cambio de aceite,2021-04-27: Sustitución de frenos
+vehiculo41.png;Guayaquil;11200.90;Checrolet;Falcon;2002;97000;V6 3.0L;Manual;1350.35;2005-11-22: Reparación de frenos;2003-07-08: Cambio de filtros,2007-03-16: Reemplazo de batería,2009-10-02: Cambio de aceite
+vehiculo42.png;Quito;18400.50;Zord;Galaxy;2017;49000;V8 4.5L;Automática;1750.20;;2018-10-30: Cambio de aceite,2020-04-22: Revisión de transmisión,2022-02-18: Sustitución de frenos
+vehiculo43.png;Cuenca;16200.75;Mia;Cielo;2005;130000;I4 2.0L;Manual;1450.95;2007-11-10: Reparación de motor;2006-06-22: Cambio de filtros,2009-03-05: Reemplazo de batería,2012-08-15: Cambio de correas
+vehiculo44.png;Guayaquil;14600.85;Checrolet;Nova;2007;81000;V6 3.5L;Automática;1500.35;;2008-12-30: Cambio de aceite,2010-03-20: Revisión de transmisión,2012-07-05: Sustitución de frenos
+vehiculo45.png;Quito;9600.20;Zord;Mustang;2004;99000;V8 4.0L;Manual;1650.70;2006-08-18: Reparación de chasis;2005-02-10: Cambio de filtros,2009-06-25: Reemplazo de batería,2011-11-30: Cambio de aceite
+vehiculo46.png;Cuenca;13600.90;Mia;Cielo;2011;68000;I4 1.8L;Automática;1250.40;2012-09-12: Reparación de suspensión;2011-05-08: Cambio de filtros,2013-04-16: Reemplazo de batería,2016-07-02: Cambio de aceite
+vehiculo47.png;Guayaquil;17200.50;Checrolet;Comet;2016;54000;V6 3.3L;Manual;1400.20;2018-05-12: Reparación de luces;2017-04-22: Cambio de filtros,2020-09-10: Reemplazo de batería,2022-12-25: Cambio de aceite
+vehiculo48.png;Quito;19300.30;Zord;Galaxy;2021;12000;V8 5.0L;Automática;1700.40;;2022-05-20: Cambio de aceite,2023-11-30: Revisión de transmisión
+vehiculo49.png;Cuenca;19500.25;Mia;Nebula;2017;45000;V6 3.2L;Manual;1450.20;;2018-03-15: Cambio de aceite,2020-05-12: Sustitución de frenos
+
