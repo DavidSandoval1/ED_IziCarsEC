@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.EditVehiculoUserController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" minHeight="460.0" minWidth="900.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.EditVehiculoUserController">
    <children>
       <VBox prefHeight="460.0" prefWidth="900.0">
          <children>

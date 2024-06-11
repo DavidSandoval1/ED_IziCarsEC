@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="518.0" minWidth="925.0" prefHeight="518.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CarruselController">
+<AnchorPane id="AnchorPane" minHeight="518.0" minWidth="925.0" prefHeight="518.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.CarruselController">
    <children>
       <Pane layoutX="838.0" prefHeight="518.0" prefWidth="98.0" style="-fx-background-color: linear-gradient(to left, #383838, black);">
          <children>
