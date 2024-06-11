@@ -108,7 +108,7 @@ public class VUserController implements Initializable {
                     //Cargar el vehiculo actual al carrusel
                     EditVehiculoUserController editController = fxmlLoader.getController();
                     editController.cargarVehiculo(vehiculoActual);
-                    Scene s = new Scene(root, 900, 600);
+                    Scene s = new Scene(root, 900, 460);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);                                       
                     Stage stage = new Stage();
@@ -148,9 +148,7 @@ public class VUserController implements Initializable {
     private void crearVehiculo(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = App.loadFXML("crearVehiculo");
-            Scene s = new Scene(fxmlLoader.load(), 900, 600);
-            //juegoController jc = fxmlLoader.getController();
-            //jc.recibirValores(txt_nombre.getText(), colorFondo);
+            Scene s = new Scene(fxmlLoader.load(), 900, 460);
             Stage stage = new Stage();
             stage.setTitle("Crea tu Vehículo");
             stage.setScene(s);
