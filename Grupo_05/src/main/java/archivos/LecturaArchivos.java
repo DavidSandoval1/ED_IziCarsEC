@@ -79,7 +79,7 @@ public class LecturaArchivos {
         }catch (FileNotFoundException e1){
             System.out.println("Archivo de Vehículos no encontrado");
         }catch (Exception e){
-            System.out.println("Ocurrió una excepción en la lectura de Vehículos");;
+            System.out.println("Ocurrió una excepción en la lectura de Vehículos de Usuario");;
         }
         return vehiculos;
     }

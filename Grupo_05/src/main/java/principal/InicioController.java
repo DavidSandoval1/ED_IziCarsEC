@@ -437,7 +437,7 @@ public class InicioController implements Initializable {
     private void misVehiculos(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = App.loadFXML("vUser");
-            Scene s = new Scene(fxmlLoader.load(), 900, 460);
+            Scene s = new Scene(fxmlLoader.load(), 925, 580);
             //juegoController jc = fxmlLoader.getController();
             //jc.recibirValores(txt_nombre.getText(), colorFondo);
             Stage stage = new Stage();
