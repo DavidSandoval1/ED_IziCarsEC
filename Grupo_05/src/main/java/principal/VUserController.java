@@ -5,15 +5,13 @@
 package principal;
 
 import MyTDAs.CircularListPRS;
-import MyTDAs.LinkedListPRS;
 import MyTDAs.PilaPRS;
 import archivos.LecturaArchivos;
-import clases.Vehiculo;
 import clases.VehiculoUsuario;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,12 +62,36 @@ public class VUserController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        vehiculosFiltroUsuario.clear();
-        vehiculosFiltroUsuario.addAll(vehiculosUsuario);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         
+        vehiculosFiltroUsuario.clear();
+        vehiculosFiltroUsuario.addAll(vehiculosUsuario);
         cargarVehiculosFlowPane(vehiculosFiltroUsuario);
+    }
+    
+    public static void recargarVehiculos(PilaPRS<VehiculoUsuario> pila){
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/user/VehiculosUsuario.txt"))) {
+            escritor.write("propietario[0];imagen[1];ubicacion[2];precio[3];marca[4];modelo[5];anio[6];kilometraje[7];motor[8];transmision[9];peso[10];historialA[11];historialM[12]");
+            for(VehiculoUsuario vU: pila){
+                StringBuilder sbHA = new StringBuilder();
+                for(String s: vU.getHistorialA()){
+                    if(s.equals(vU.getHistorialA().get(vU.getHistorialA().size()-1))) sbHA.append(s);
+                    else sbHA.append(s).append(",");
+                }
+                StringBuilder sbHM = new StringBuilder();
+                for(String s: vU.getHistorialM()){
+                    if(s.equals(vU.getHistorialM().get(vU.getHistorialM().size()-1))) sbHM.append(s);
+                    else sbHM.append(s).append(",");
+                }
+                escritor.newLine();
+                escritor.write("" + vU.getPropietario() + ";" + vU.getImagen() + ";" + vU.getUbicacion() + ";" + vU.getPrecio() + ";" + 
+                vU.getMarca() + ";" + vU.getModelo() + ";" + vU.getAnio() + ";" + vU.getKilometraje() + ";" + vU.getMotor() + ";" + 
+                vU.getTransmision() + ";" + vU.getPeso() + ";" + sbHA.toString() + ";" + sbHM.toString());
+            }
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
+        }
     }
     
     public void cargarVehiculosFlowPane(CircularListPRS<VehiculoUsuario> pila){
@@ -86,11 +108,11 @@ public class VUserController implements Initializable {
                     //Cargar el vehiculo actual al carrusel
                     EditVehiculoUserController editController = fxmlLoader.getController();
                     editController.cargarVehiculo(vehiculoActual);
-                    Scene s = new Scene(root, 900, 460);
+                    Scene s = new Scene(root, 900, 600);
                     //juegoController jc = fxmlLoader.getController();
                     //jc.recibirValores(txt_nombre.getText(), colorFondo);                                       
                     Stage stage = new Stage();
-                    stage.setTitle("Vehiculo");
+                    stage.setTitle("Tus Vehiculos");
                     stage.setScene(s);
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);              
@@ -109,7 +131,7 @@ public class VUserController implements Initializable {
             Border border = new Border(borderStroke);
             cajaVehiculo.setBorder(border);
             //Imagen del vehiculo
-            ImageView imagenVehiculo = new ImageView(new Image("file:"+v.getImagen()));
+            ImageView imagenVehiculo = new ImageView(new Image("file:"+VehiculoUsuario.pathImages+v.getImagen()));
             imagenVehiculo.setFitWidth(186);
             imagenVehiculo.setFitHeight(186);
             imagenVehiculo.setPreserveRatio(true);
@@ -126,7 +148,7 @@ public class VUserController implements Initializable {
     private void crearVehiculo(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = App.loadFXML("crearVehiculo");
-            Scene s = new Scene(fxmlLoader.load(), 900, 460);
+            Scene s = new Scene(fxmlLoader.load(), 900, 600);
             //juegoController jc = fxmlLoader.getController();
             //jc.recibirValores(txt_nombre.getText(), colorFondo);
             Stage stage = new Stage();

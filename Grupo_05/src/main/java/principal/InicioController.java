@@ -109,8 +109,8 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        vehiculosSistema.addAll(vehiculosUsuario);
         vehiculosFiltrados.addAll(vehiculosSistema);
+        vehiculosFiltrados.addAll(VUserController.vehiculosUsuario);
         scrlPane.setFitToWidth(true);
         scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         
@@ -152,7 +152,7 @@ public class InicioController implements Initializable {
             Border border = new Border(borderStroke);
             cajaVehiculo.setBorder(border);
             //Imagen del vehiculo
-            ImageView imagenVehiculo = new ImageView(new Image("file:"+v.getImagen()));
+            ImageView imagenVehiculo = new ImageView(new Image("file:"+LecturaArchivos.pathImages+v.getImagen()));
             imagenVehiculo.setFitWidth(186);
             imagenVehiculo.setFitHeight(186);
             imagenVehiculo.setPreserveRatio(true);
@@ -375,6 +375,7 @@ public class InicioController implements Initializable {
         grupo1.selectToggle(null);
         vehiculosFiltrados.clear();        
         vehiculosFiltrados.addAll(vehiculosSistema);
+        vehiculosFiltrados.addAll(VUserController.vehiculosUsuario);
         cargarVehiculosFlowPane(vehiculosFiltrados);
     }
     
@@ -386,6 +387,9 @@ public class InicioController implements Initializable {
     
     @FXML
     private void recargarVehiculos(){
+        vehiculosFiltrados.clear();
+        vehiculosFiltrados.addAll(vehiculosSistema);
+        vehiculosFiltrados.addAll(VUserController.vehiculosUsuario);
         cargarVehiculosFlowPane(vehiculosFiltrados);
     }
     

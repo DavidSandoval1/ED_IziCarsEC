@@ -17,7 +17,7 @@ import java.io.FileReader;
  */
 public class LecturaArchivos {
     public static String pathFiles = "src/main/resources/files/";
-    public static String pathImages = "src/main/resources/img/";
+    public static String pathImages = "src/main/resources/user/";
     public static String pathFilesUser = "src/main/resources/user/";
     
     public static PilaPRS<Vehiculo> leerVehiculos(String nombreArchivo){
@@ -29,7 +29,7 @@ public class LecturaArchivos {
                 String[] dato = linea.split(";");
                 Vehiculo v = new Vehiculo();
                 
-                v.setImagen(pathImages+dato[0]); v.setUbicacion(dato[1]); v.setPrecio(Double.parseDouble(dato[2]));
+                v.setImagen(dato[0]); v.setUbicacion(dato[1]); v.setPrecio(Double.parseDouble(dato[2]));
                 v.setMarca(dato[3]); v.setModelo(dato[4]); v.setAnio(Integer.parseInt(dato[5]));
                 v.setKilometraje(Integer.parseInt(dato[6])); v.setMotor(dato[7]); v.setTransmision(dato[8]);
                 v.setPeso(Double.parseDouble(dato[9]));
@@ -47,7 +47,7 @@ public class LecturaArchivos {
         }catch (FileNotFoundException e1){
             System.out.println("Archivo de Vehículos no encontrado");
         }catch (Exception e){
-            System.out.println("Ocurrió una excepción en la lectura de Vehículos");;
+            System.out.println("Ocurrió una excepción en la lectura de Vehículos");
         }
         return vehiculos;
     }
@@ -61,7 +61,7 @@ public class LecturaArchivos {
                 String[] dato = linea.split(";");
                 VehiculoUsuario v = new VehiculoUsuario();
                 
-                v.setPropietario(dato[0]) ;v.setImagen(pathFilesUser+dato[1]); v.setUbicacion(dato[2]);
+                v.setPropietario(dato[0]);v.setImagen(dato[1]); v.setUbicacion(dato[2]);
                 v.setPrecio(Double.parseDouble(dato[3])); v.setMarca(dato[4]); v.setModelo(dato[5]); 
                 v.setAnio(Integer.parseInt(dato[6])); v.setKilometraje(Integer.parseInt(dato[7])); 
                 v.setMotor(dato[8]); v.setTransmision(dato[9]); v.setPeso(Double.parseDouble(dato[10]));
